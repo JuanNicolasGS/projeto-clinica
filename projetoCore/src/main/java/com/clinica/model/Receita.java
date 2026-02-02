@@ -12,6 +12,9 @@ public class Receita {
     private Consulta consulta;
     private List<Medicamento> medicamentos = new ArrayList<>();
     
+    public Receita() {
+    }
+
     public Receita(Integer id, Date data, Date validade, String observacoes, Consulta consulta) {
         setId(id);
         this.data = data;
@@ -64,6 +67,10 @@ public class Receita {
     
     public List<Medicamento> getMedicamentos() {
         return medicamentos;
+    }
+
+    public void setMedicamentos(List<Medicamento> medicamentos) {
+        this.medicamentos = medicamentos;
     }
 
     public void adicionarMedicamento(Medicamento medicamento){

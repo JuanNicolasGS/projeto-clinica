@@ -1,14 +1,17 @@
 package com.clinica.model;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Pessoa{
     private List<String> telefones;
     private String nome;
 
-    public Pessoa() {
+    public Pessoa(){}
+
+    public Pessoa(String nome) {
         this.telefones = new ArrayList<>();
+        this.nome = nome;
     }
 
     public void adicionarTelefone(String telefone){

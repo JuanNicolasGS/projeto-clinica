@@ -1,10 +1,16 @@
 package com.clinica.model;
 
+import java.util.List;
+
 public class Profissional extends Pessoa {
     private Integer id;
     private String especialidade;
     private String registro;
     private Clinica clinica;
+
+    public Profissional() {
+        super();
+    }
 
     public Profissional(Integer id, String nome, String telefone, String especialidade, String registro, Clinica clinica) {
         super(nome);
@@ -47,5 +53,11 @@ public class Profissional extends Pessoa {
 
     public void setRegistro(String registro) {
         this.registro = registro;
+    }
+
+    public void setTelefones(List<String> telefones) {
+        for (String tel : telefones) {
+            this.adicionarTelefone(tel);
+        }
     }
 }

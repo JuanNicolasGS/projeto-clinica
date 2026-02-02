@@ -6,6 +6,8 @@ public class Paciente extends Pessoa{
     private String cpf;
     private Date dataNasc;
 
+    public Paciente(){}
+
     public Paciente(String nome, String telefone, String cpf, Date dataNasc){
         super(nome);
         adicionarTelefone(telefone);

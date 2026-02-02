@@ -7,8 +7,9 @@ public abstract class Pessoa{
     private List<String> telefones;
     private String nome;
 
-    public Pessoa() {
+    public Pessoa(String nome) {
         this.telefones = new ArrayList<>();
+        this.nome = nome;
     }
 
     public void adicionarTelefone(String telefone){

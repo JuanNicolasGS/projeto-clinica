@@ -9,7 +9,7 @@ public abstract class Pessoa{
 
     public Pessoa(String nome) {
         this.telefones = new ArrayList<>();
-        this.nome = npme;
+        this.nome = nome;
     }
 
     public void adicionarTelefone(String telefone){

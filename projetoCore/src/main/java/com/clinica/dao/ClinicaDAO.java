@@ -29,7 +29,7 @@ public class ClinicaDAO {
 
     public List<Clinica> listar() {
         List<Clinica> clinicas = new ArrayList<>();
-        String sql = "SELECT id, nome FROM clinica";
+        String sql = "SELECT id_clinica, nome FROM clinica";
 
         try (Connection conexao = ConnectionFactory.getConnection();
              PreparedStatement ps = conexao.prepareStatement(sql);
@@ -37,7 +37,7 @@ public class ClinicaDAO {
 
             while (rs.next()) {
                 Clinica clinica = new Clinica(
-                    rs.getInt("id"),
+                    rs.getInt("id_clinica"),
                     rs.getString("nome")
                 );
                 clinicas.add(clinica);
@@ -50,13 +50,13 @@ public class ClinicaDAO {
         return clinicas;
     }
 
-    public boolean deletarClinica(Integer id) {
-        String sql = "DELETE FROM clinica WHERE id = ?";
+    public boolean deletarClinica(Integer idClinica) {
+        String sql = "DELETE FROM clinica WHERE id_clinica = ?";
 
         try (Connection conexao = ConnectionFactory.getConnection();
              PreparedStatement ps = conexao.prepareStatement(sql)) {
 
-            ps.setInt(1, id);
+            ps.setInt(1, idClinica);
             return ps.executeUpdate() > 0;
 
         } catch (SQLException e) {

@@ -7,11 +7,8 @@ public abstract class Pessoa{
     private List<String> telefones;
     private String nome;
 
-<<<<<<< HEAD
     public Pessoa(){}
 
-=======
->>>>>>> junior
     public Pessoa(String nome) {
         this.telefones = new ArrayList<>();
         this.nome = nome;

@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import com.clinica.util.ConnectionFactory;
 
-import com.clinica.model.Consulta;;
+import com.clinica.model.Consulta;
+import com.clinica.util.ConnectionFactory;;
 
 public class ConsultaDAO {
 
@@ -66,7 +66,7 @@ public class ConsultaDAO {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();;
+            e.printStackTrace();
         }
 
         return consultas;

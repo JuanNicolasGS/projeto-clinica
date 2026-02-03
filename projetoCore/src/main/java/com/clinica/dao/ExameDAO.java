@@ -16,7 +16,7 @@ public class ExameDAO {
 
         String sql = """
             INSERT INTO exame
-            (paciente_id, profissional_id, nome, prioridade, observacoes)
+            (cpf_paciente, id_profissional, tipo_exame, prioridade, observacoes)
             VALUES (?, ?, ?, ?, ?)
         """;
 
@@ -25,24 +25,21 @@ public class ExameDAO {
 
             ps.setString(1, exame.getPaciente().getCpf());
             ps.setInt(2, exame.getProfissional().getId());
-            ps.setString(3, exame.getNome());
+            ps.setString(3, exame.getNome()); 
             ps.setString(4, exame.getPrioridade());
             ps.setString(5, exame.getObservacoes());
 
-            ps.executeUpdate();
-            return true;
+            return ps.executeUpdate() > 0;
 
         } catch (SQLException e) {
-            e.printStackTrace();;
+            e.printStackTrace();
+            return false;
         }
-        return false;
-
     }
 
     public List<Exame> listarExames() {
 
         List<Exame> exames = new ArrayList<>();
-
         String sql = "SELECT * FROM exame";
 
         try (Connection con = ConnectionFactory.getConnection();
@@ -52,10 +49,10 @@ public class ExameDAO {
             while (rs.next()) {
 
                 Exame exame = new Exame(
-                    rs.getInt("id"),
-                    null, 
-                    null, 
-                    rs.getString("nome"),
+                    rs.getInt("id_exame"),     
+                    null,                     
+                    null,                      
+                    rs.getString("tipo_exame"),
                     rs.getString("prioridade"),
                     rs.getString("observacoes")
                 );
@@ -70,50 +67,47 @@ public class ExameDAO {
         return exames;
     }
 
-    public Exame buscarExamePorId(int id) {
+    public Exame buscarExamePorId(int idExame) {
 
-        String sql = "SELECT * FROM exame WHERE id = ?";
+        String sql = "SELECT * FROM exame WHERE id_exame = ?";
 
         try (Connection con = ConnectionFactory.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setInt(1, id);
+            ps.setInt(1, idExame);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
                 return new Exame(
-                    rs.getInt("id"),
+                    rs.getInt("id_exame"),
                     null,
                     null,
-                    rs.getString("nome"),
+                    rs.getString("tipo_exame"),
                     rs.getString("prioridade"),
                     rs.getString("observacoes")
                 );
             }
 
         } catch (SQLException e) {
-            
+            e.printStackTrace();
         }
 
         return null;
     }
 
-    public boolean excluir(int id) {
+    public boolean excluir(int idExame) {
 
-        String sql = "DELETE FROM exame WHERE id = ?";
+        String sql = "DELETE FROM exame WHERE id_exame = ?";
 
         try (Connection con = ConnectionFactory.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setInt(1, id);
-            ps.executeUpdate();
-
-            return true;
+            ps.setInt(1, idExame);
+            return ps.executeUpdate() > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
-        return false;
     }
 }
-

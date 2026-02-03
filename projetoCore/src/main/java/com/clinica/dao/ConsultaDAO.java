@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import com.clinica.util.ConnectionFactory;
 
-import com.clinica.model.Consulta;;
+import com.clinica.model.Consulta;
+import com.clinica.util.ConnectionFactory;
 
 public class ConsultaDAO {
 
@@ -17,7 +17,7 @@ public class ConsultaDAO {
 
         String sql = """
             INSERT INTO consulta
-            (paciente_id, profissional_id, clinica_id, data, valor, observacoes)
+            (cpf_paciente, id_profissional, id_clinica, data, valor, observacoes)
             VALUES (?, ?, ?, ?, ?, ?)
         """;
 
@@ -31,19 +31,17 @@ public class ConsultaDAO {
             ps.setDouble(5, consulta.getValor());
             ps.setString(6, consulta.getObservacoes());
 
-            ps.executeUpdate();
-            return true;
+            return ps.executeUpdate() > 0;
 
         } catch (SQLException e) {
-             e.printStackTrace();
+            e.printStackTrace();
+            return false;
         }
-        return false;
     }
 
     public List<Consulta> listarConsulta() {
 
         List<Consulta> consultas = new ArrayList<>();
-
         String sql = "SELECT * FROM consulta";
 
         try (Connection con = ConnectionFactory.getConnection();
@@ -53,10 +51,10 @@ public class ConsultaDAO {
             while (rs.next()) {
 
                 Consulta consulta = new Consulta(
-                    rs.getInt("id"),
-                    null, // paciente
-                    null, // profissional
-                    null, // clinica
+                    rs.getInt("id_consulta"),
+                    null,
+                    null, 
+                    null, 
                     new Date(rs.getDate("data").getTime()),
                     rs.getDouble("valor"),
                     rs.getString("observacoes")
@@ -66,26 +64,25 @@ public class ConsultaDAO {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();;
+            e.printStackTrace();
         }
 
         return consultas;
     }
 
-    public boolean excluirConsulta(int id) {
+    public boolean excluirConsulta(int idConsulta) {
 
-        String sql = "DELETE FROM consulta WHERE id = ?";
+        String sql = "DELETE FROM consulta WHERE id_consulta = ?";
 
         try (Connection con = ConnectionFactory.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setInt(1, id);
-            ps.executeUpdate();
-            return true;
+            ps.setInt(1, idConsulta);
+            return ps.executeUpdate() > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
-        return false;
     }
 }

@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="jakarta.tags.core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -21,43 +22,62 @@
       >
         <div class="form-group">
           <label>Nome do Paciente:</label>
+          <input type="text" name="nome" value="${paciente.nome}" required />
+        </div>
+
+        <div class="form-group">
+          <label>CPF (Não editável):</label>
           <input
             type="text"
-            name="nome"
-            value="Nome Atual"
-            required
-            placeholder="Atualize o nome completo"
+            name="cpf"
+            value="${paciente.cpf}"
+            readonly
+            style="background-color: #eee; cursor: not-allowed"
           />
         </div>
 
         <div class="form-group">
-          <label>CPF (Identificador único):</label>
+          <label>Data de Nascimento:</label>
           <input
-            type="text"
-            name="cpf"
-            value="000.000.000-00"
-            readonly
-            style="
-              background-color: #eee;
-              cursor: not-allowed;
-              border-color: #ccc;
-            "
+            type="date"
+            name="dataNascimento"
+            value="${paciente.dataNasc}"
+            required
           />
         </div>
 
         <div class="form-group">
           <label>Contatos Telefônicos:</label>
           <div id="telefones-container">
-            <div class="telefone-row">
-              <input type="text" name="telefones" value="(00) 00000-0000" />
-              <button
-                type="button"
-                class="btn-remove"
-                onclick="removerTelefone(this)"
-              >
-                X
-              </button>
-            </div>
+            <c:forEach var="fone" items="${paciente.telefones}">
+              <div class="telefone-row">
+                <input type="text" name="telefones" value="${fone}" />
+                <button
+                  type="button"
+                  class="btn-remove"
+                  onclick="removerTelefone(this)"
+                >
+                  X
+                </button>
+              </div>
+            </c:forEach>
+
+            <c:if test="${empty paciente.telefones}">
+              <div class="telefone-row">
+                <input
+                  type="text"
+                  name="telefones"
+                  placeholder="(00) 00000-0000"
+                />
+                <button
+                  type="button"
+                  class="btn-remove"
+                  onclick="removerTelefone(this)"
+                >
+                  X
+                </button>
+              </div>
+            </c:if>
           </div>
           <button type="button" class="btn-add" onclick="adicionarTelefone()">
             + Adicionar Outro Telefone
@@ -67,7 +87,6 @@
         <button type="submit" class="button btn-success">
           Atualizar Dados
         </button>
-
         <a href="index.jsp" class="button btn-neutral">Cancelar Alterações</a>
       </form>
     </div>

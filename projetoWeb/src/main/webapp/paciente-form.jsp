@@ -35,6 +35,11 @@
         </div>
 
         <div class="form-group">
+          <label>Data de Nascimento:</label>
+          <input type="date" name="dataNascimento" required placeholder="dd/mm/yyyy" />
+        </div>
+
+        <div class="form-group">
           <label>Contatos Telefônicos:</label>
           <div id="telefones-container">
             <div class="telefone-row">

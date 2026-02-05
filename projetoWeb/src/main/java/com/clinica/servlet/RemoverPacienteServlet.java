@@ -19,6 +19,7 @@ public class RemoverPacienteServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String cpf = req.getParameter("cpf");
+        cpf = cpf.replaceAll("[^0-9]", "");
 
         try {
             PacienteDAO dao = new PacienteDAO();
@@ -28,6 +29,6 @@ public class RemoverPacienteServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        resp.sendRedirect("paciente?acao=listar");
+        resp.sendRedirect("listarPacientes");
     }
 }

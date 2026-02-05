@@ -2,6 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -31,15 +32,24 @@
             <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
             <version>3.0.0</version>
         </dependency>
+
         <dependency>
             <groupId>org.glassfish.web</groupId>
             <artifactId>jakarta.servlet.jsp.jstl</artifactId>
             <version>3.0.1</version>
         </dependency>
+
+        <!-- DRIVER POSTGRES -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.1</version>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -49,13 +59,25 @@
                 </configuration>
             </plugin>
 
+            <!-- ================= CARGO CONFIGURADO ================= -->
             <plugin>
                 <groupId>org.codehaus.cargo</groupId>
                 <artifactId>cargo-maven3-plugin</artifactId>
                 <version>1.10.7</version>
+
                 <configuration>
                     <container>
                         <containerId>tomcat11x</containerId>
+
+                        <!-- ISTO RESOLVE O ERRO DO POSTGRES -->
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.postgresql</groupId>
+                                <artifactId>postgresql</artifactId>
+                                <classpath>true</classpath>
+                            </dependency>
+                        </dependencies>
+
                         <artifactInstaller>
                             <groupId>org.apache.tomcat</groupId>
                             <artifactId>tomcat</artifactId>
@@ -63,12 +85,17 @@
                             <type>zip</type>
                         </artifactInstaller>
                     </container>
-                    
+
                     <configuration>
                         <properties>
                             <cargo.servlet.port>8080</cargo.servlet.port>
                             <cargo.tomcat.copyvars>true</cargo.tomcat.copyvars>
                             <cargo.rmi.port>8206</cargo.rmi.port>
+
+                            <cargo.jvmargs>
+                                -Dfile.encoding=UTF-8
+                                -Duser.timezone=America/Sao_Paulo
+                            </cargo.jvmargs>
                         </properties>
                     </configuration>
 
@@ -82,8 +109,11 @@
                             </properties>
                         </deployable>
                     </deployables>
+
                 </configuration>
             </plugin>
+            <!-- ====================================================== -->
+
         </plugins>
     </build>
 </project>

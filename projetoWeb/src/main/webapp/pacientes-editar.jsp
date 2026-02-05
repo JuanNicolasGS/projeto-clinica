@@ -41,7 +41,7 @@
           <input
             type="date"
             name="dataNascimento"
-            value="${paciente.dataNasc}"
+            value="${paciente.dataNasc.toString()}"
             required
           />
         </div>

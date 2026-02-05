@@ -10,6 +10,12 @@ public class ConnectionFactory {
     private static final String PASS = "30082006";
 
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USER, PASS);
+        try {
+            Class.forName("org.postgresql.Driver");
+            
+            return DriverManager.getConnection(URL, USER, PASS);
+        } catch (ClassNotFoundException e) {
+            throw new SQLException("Driver PostgreSQL não encontrado", e);
+        }
     }
 }

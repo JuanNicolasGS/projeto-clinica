@@ -36,7 +36,12 @@
 
         <div class="form-group">
           <label>Data de Nascimento:</label>
-          <input type="date" name="dataNascimento" required placeholder="dd/mm/yyyy" />
+          <input
+            type="date"
+            name="dataNascimento"
+            required
+            placeholder="dd/mm/yyyy"
+          />
         </div>
 
         <div class="form-group">
@@ -46,7 +51,9 @@
               <input
                 type="text"
                 name="telefones"
-                placeholder="(00) 00000-0000"
+                placeholder="(11) 99999-8888"
+                pattern="\(\d{2}\) \d{4,5}-\d{4}"
+                required
               />
               <button
                 type="button"

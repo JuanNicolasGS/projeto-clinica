@@ -13,7 +13,7 @@
 
       <main style="width: 100%">
         <div class="buttons-grid">
-          <a href="pacientes-lista.jsp" class="button btn-info">
+          <a href="${pageContext.request.contextPath}/listarPacientes" class="button btn-info">
             Listar Todos os Pacientes
           </a>
 

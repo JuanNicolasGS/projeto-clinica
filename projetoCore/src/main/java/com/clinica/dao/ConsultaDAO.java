@@ -16,7 +16,7 @@ public class ConsultaDAO {
     public boolean inserirConsulta(Consulta consulta) {
 
         String sql = """
-            INSERT INTO consulta
+            INSERT INTO consultak
             (cpf_paciente, id_profissional, id_clinica, data, valor, observacoes)
             VALUES (?, ?, ?, ?, ?, ?)
         """;
@@ -86,3 +86,5 @@ public class ConsultaDAO {
         }
     }
 }
+
+

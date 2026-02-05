@@ -1,25 +1,13 @@
 package com.clinica;
 
-import com.clinica.model.Exame;
-
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-        Exame e = new Exame("Raio-X de Tórax");
-        
-        Label label = new Label("Módulo Desktop: " + e.getNome());
-        Scene scene = new Scene(new StackPane(label), 400, 200);
-        
-        stage.setTitle("Clínica - JavaFX");
-        stage.setScene(scene);
-        stage.show();
+
     }
 
     public static void main(String[] args) {

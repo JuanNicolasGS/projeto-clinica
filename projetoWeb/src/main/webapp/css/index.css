@@ -1,0 +1,162 @@
+body {
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  flex-direction: column;
+}
+
+.button {
+  border: none;
+  color: white;
+  padding: 22px 40px;
+  text-decoration: none;
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 15px 0;
+  cursor: pointer;
+  border-radius: 8px;
+  transition:
+    background-color 0.3s ease,
+    transform 0.1s;
+}
+
+.button:active {
+  transform: scale(0.99);
+}
+
+a.button {
+  color: white;
+}
+
+.form-container {
+  background-color: white;
+  padding: 50px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  width: 95%;
+  /* Aumentado para ocupar mais espaço lateral */
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-group label {
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  color: #333;
+}
+
+.form-group input {
+  padding: 15px; /* Inputs mais altos */
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 18px; /* Texto maior dentro do campo */
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  border-color: #008cba;
+  outline: none;
+}
+
+.telefone-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.telefone-row input {
+  flex: 1;
+}
+
+.form-container h1 {
+  margin-top: 0;
+  margin-bottom: 40px;
+  font-size: 38px; /* Título ainda maior */
+  color: #222;
+  text-align: center;
+  font-weight: 800;
+}
+
+.buttons-grid {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Cores e Estados */
+.btn-success {
+  background-color: #4caf50;
+}
+.btn-success:hover {
+  background-color: #388e3c;
+}
+
+.btn-danger {
+  background-color: #f44336;
+}
+.btn-danger:hover {
+  background-color: #d32f2f;
+}
+
+.btn-neutral {
+  background-color: #888888;
+}
+.btn-neutral:hover {
+  background-color: #666666;
+}
+
+.btn-info {
+  background-color: #008cba;
+}
+.btn-info:hover {
+  background-color: #007096;
+}
+
+/* Botões de controle interno */
+.btn-remove {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 0 20px;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.btn-add {
+  background-color: #008cba;
+  color: white;
+  border: none;
+  padding: 15px;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  font-weight: bold;
+  font-size: 16px;
+}

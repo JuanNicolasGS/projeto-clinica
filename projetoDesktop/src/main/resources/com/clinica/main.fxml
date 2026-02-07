@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.clinica.controller.MainController"
+            stylesheets="@css/app.css"
+            styleClass="root"
+            prefWidth="1100.0" prefHeight="700.0">
+
+    <left>
+        <VBox prefWidth="180.0" spacing="8.0" styleClass="sidebar">
+            <padding><Insets top="12" right="10" bottom="12" left="10"/></padding>
+
+            <Button fx:id="btnPacientes" text="Pacientes" onAction="#goPacientes"
+                    maxWidth="1.7976931348623157E308" styleClass="menu-button"/>
+            <Button fx:id="btnProfissionais" text="Profissionais" onAction="#goProfissionais"
+                    maxWidth="1.7976931348623157E308" styleClass="menu-button"/>
+            <Button fx:id="btnConsultas" text="Consultas" onAction="#goConsultas"
+                    maxWidth="1.7976931348623157E308" styleClass="menu-button"/>
+            <Button fx:id="btnLancamento" text="Lançamento" onAction="#goLancamento"
+                    maxWidth="1.7976931348623157E308" styleClass="menu-button"/>
+
+            <Region VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane fx:id="contentPane"/>
+    </center>
+
+    <bottom>
+        <HBox spacing="10.0" alignment="CENTER_LEFT" styleClass="bottom-bar">
+            <padding><Insets top="8" right="12" bottom="8" left="12"/></padding>
+            <Label fx:id="lblStatus" text="Pronto."/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

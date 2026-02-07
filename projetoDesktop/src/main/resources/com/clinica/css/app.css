@@ -1,0 +1,268 @@
+/* ========= Dark Theme (JavaFX) ========= */
+.root {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-background-color: #0f172a; /* slate-900 */
+    -fx-text-fill: #e5e7eb;        /* gray-200 */
+}
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+    -fx-background-color: #111827; /* gray-900 */
+    -fx-padding: 12 10 12 10;
+}
+
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #e5e7eb;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10 12 10 12;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+}
+
+.menu-button:hover {
+    -fx-background-color: rgba(229, 231, 235, 0.10);
+}
+
+.menu-selected {
+    -fx-background-color: rgba(59, 130, 246, 0.22); /* blue glow */
+    -fx-font-weight: bold;
+}
+
+/* ---------- Content Panels ---------- */
+.form {
+    -fx-background-color: #111827;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: rgba(229, 231, 235, 0.12);
+    -fx-border-width: 1;
+}
+
+.separator {
+    -fx-opacity: 0.35;
+}
+
+/* Labels / text */
+.label {
+    -fx-text-fill: #e5e7eb;
+}
+
+.section-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #93c5fd; /* blue-300 */
+}
+
+/* ---------- Inputs ---------- */
+.text-field, .password-field, .combo-box, .date-picker, .text-area {
+    -fx-background-color: #0b1220;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: rgba(229, 231, 235, 0.14);
+    -fx-border-width: 1;
+    -fx-text-fill: #e5e7eb;
+    -fx-prompt-text-fill: rgba(229, 231, 235, 0.45);
+    -fx-padding: 8 10 8 10;
+}
+
+.text-area .content {
+    -fx-background-color: #0b1220;
+}
+
+.text-field:focused, .combo-box:focused, .date-picker:focused, .text-area:focused {
+    -fx-border-color: #3b82f6; /* blue-500 */
+    -fx-border-width: 1.2;
+}
+
+/* ComboBox arrow */
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+.combo-box .arrow {
+    -fx-background-color: #cbd5e1; /* slate-300 */
+}
+
+/* DatePicker button */
+.date-picker .arrow-button {
+    -fx-background-color: transparent;
+}
+.date-picker .arrow-button:hover {
+    -fx-background-color: rgba(229, 231, 235, 0.08);
+}
+
+/* ---------- TableView ---------- */
+.table-view {
+    -fx-background-color: #111827;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: rgba(229, 231, 235, 0.12);
+    -fx-border-width: 1;
+}
+
+.table-view .virtual-flow {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #0b1220;
+    -fx-background-radius: 12 12 0 0;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #93c5fd;
+    -fx-font-weight: bold;
+}
+
+.table-row-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #e5e7eb;
+}
+
+.table-row-cell:filled:hover {
+    -fx-background-color: rgba(229, 231, 235, 0.06);
+}
+
+.table-row-cell:filled:selected, .table-row-cell:filled:selected:hover {
+    -fx-background-color: rgba(59, 130, 246, 0.22);
+}
+
+.table-cell {
+    -fx-border-color: transparent;
+}
+
+/* Placeholder text inside TableView */
+.table-view .placeholder .label {
+    -fx-text-fill: rgba(229, 231, 235, 0.55);
+}
+
+/* ---------- ScrollPane ---------- */
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+/* ---------- Bottom bar ---------- */
+.bottom-bar {
+    -fx-background-color: #0b1220;
+    -fx-border-color: rgba(229, 231, 235, 0.12) transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+/* ---------- Buttons ---------- */
+.button {
+    -fx-background-radius: 10;
+    -fx-padding: 8 14 8 14;
+    -fx-cursor: hand;
+    -fx-background-color: rgba(229, 231, 235, 0.10);
+    -fx-text-fill: #e5e7eb;
+}
+
+.button:hover {
+    -fx-background-color: rgba(229, 231, 235, 0.16);
+}
+
+.btn-primary {
+    -fx-background-color: #3b82f6;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.btn-primary:hover {
+    -fx-background-color: #2563eb;
+}
+
+.btn-danger {
+    -fx-background-color: #ef4444;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.btn-danger:hover {
+    -fx-background-color: #dc2626;
+}
+
+/* ===== Corrigir fundos que ficam brancos ===== */
+
+/* O próprio BorderPane/SplitPane ainda podem estar com fundo padrão */
+.border-pane, .split-pane, .split-pane > .split-pane-divider {
+    -fx-background-color: #0f172a; /* mesmo fundo do root */
+}
+
+/* SplitPane: conteúdo e divisores */
+.split-pane {
+    -fx-padding: 0;
+}
+
+.split-pane-divider {
+    -fx-background-color: rgba(229, 231, 235, 0.10);
+    -fx-padding: 0 1 0 1; /* divisor fino */
+}
+
+/* ScrollPane: é onde geralmente aparece o branco (viewport) */
+.scroll-pane {
+    -fx-background: #0f172a;
+    -fx-background-color: #0f172a;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: #0f172a;
+}
+
+/* Quando o ScrollPane contém um VBox "form", o espaço fora dele pode ficar branco */
+.scroll-pane .corner {
+    -fx-background-color: #0f172a;
+}
+
+/* Se algum container interno estiver ficando claro */
+.vbox, .hbox, .grid-pane, .anchor-pane {
+    -fx-background-color: transparent;
+}
+
+/* ToolBar (se você usar depois) */
+.tool-bar {
+    -fx-background-color: #0b1220;
+    -fx-border-color: rgba(229, 231, 235, 0.12);
+    -fx-border-width: 0 0 1 0;
+}
+
+/* (Opcional) barras de rolagem pra não “saltarem” no claro */
+.scroll-bar:horizontal, .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+.scroll-bar .track {
+    -fx-background-color: rgba(229, 231, 235, 0.06);
+    -fx-background-radius: 10;
+}
+.scroll-bar .thumb {
+    -fx-background-color: rgba(229, 231, 235, 0.20);
+    -fx-background-radius: 10;
+}
+.scroll-bar .thumb:hover {
+    -fx-background-color: rgba(229, 231, 235, 0.28);
+}
+
+.text-field:focused,
+.combo-box:focused,
+.date-picker:focused {
+    -fx-effect: dropshadow(gaussian, rgba(59,130,246,0.35), 6, 0, 0, 0);
+}
+
+.split-pane-divider {
+    -fx-background-color: rgba(255,255,255,0.08);
+}
+
+.menu-selected {
+    -fx-background-color: rgba(59,130,246,0.35);
+}
+
+.table-view .placeholder .label {
+    -fx-font-style: italic;
+    -fx-opacity: 0.6;
+}

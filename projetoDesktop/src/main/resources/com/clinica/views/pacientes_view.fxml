@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            styleClass="root">
+
+    <center>
+        <SplitPane dividerPositions="0.60">
+            <!-- Lista -->
+            <VBox spacing="10.0">
+                <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+
+                <HBox spacing="10.0" alignment="CENTER_LEFT">
+                    <Label text="Pesquisar Pacientes:"/>
+                    <TextField fx:id="txtBuscaPaciente" promptText="Nome ou CPF..." HBox.hgrow="ALWAYS"/>
+                </HBox>
+
+                <TableView fx:id="tblPacientes" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colPacCpf" text="CPF" prefWidth="160.0"/>
+                        <TableColumn fx:id="colPacNome" text="NOME" prefWidth="280.0"/>
+                        <TableColumn fx:id="colPacNasc" text="DATA NASCIMENTO" prefWidth="180.0"/>
+                    </columns>
+                </TableView>
+            </VBox>
+
+            <!-- Formulário -->
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+                <content>
+                    <VBox spacing="12.0" styleClass="form">
+                        <padding><Insets top="12" right="16" bottom="16" left="16"/></padding>
+
+                        <GridPane hgap="10.0" vgap="10.0">
+                            <Label text="CPF" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                            <TextField fx:id="txtCpf" promptText="000.000.000-00"
+                                       GridPane.rowIndex="0" GridPane.columnIndex="1"
+                                       GridPane.hgrow="ALWAYS"/>
+
+                            <Label text="Nome" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                            <TextField fx:id="txtNome" promptText="Nome completo"
+                                       GridPane.rowIndex="1" GridPane.columnIndex="1"
+                                       GridPane.hgrow="ALWAYS"/>
+
+                            <Label text="Data Nasc" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                            <DatePicker fx:id="dpNascimento"
+                                        GridPane.rowIndex="2" GridPane.columnIndex="1"
+                                        GridPane.hgrow="ALWAYS"/>
+                        </GridPane>
+
+                        <Separator/>
+
+                        <Label text="Telefones" styleClass="section-title"/>
+
+                        <HBox spacing="10.0" alignment="CENTER_LEFT">
+                            <TextField fx:id="txtTelefone" promptText="(00) 00000-0000" HBox.hgrow="ALWAYS"/>
+                            <ComboBox fx:id="cbTipoTelefone" promptText="Tipo" prefWidth="140.0"/>
+                            <Button fx:id="btnAddTelefone" text="+ Adicionar" styleClass="btn-primary"/>
+                        </HBox>
+
+                        <TableView fx:id="tblTelefones" prefHeight="160.0">
+                            <columns>
+                                <TableColumn fx:id="colTelNumero" text="Número" prefWidth="240.0"/>
+                                <TableColumn fx:id="colTelTipo" text="Tipo" prefWidth="140.0"/>
+                                <TableColumn fx:id="colTelAcoes" text="Ações" prefWidth="90.0"/>
+                            </columns>
+                        </TableView>
+
+                        <HBox spacing="10.0" alignment="CENTER_RIGHT">
+                            <Button fx:id="btnNovoPaciente" text="Novo Paciente"/>
+                            <Button fx:id="btnSalvarPaciente" text="Salvar" styleClass="btn-primary"/>
+                            <Button fx:id="btnExcluirPaciente" text="Excluir" styleClass="btn-danger"/>
+                        </HBox>
+                    </VBox>
+                </content>
+            </ScrollPane>
+        </SplitPane>
+    </center>
+
+</BorderPane>

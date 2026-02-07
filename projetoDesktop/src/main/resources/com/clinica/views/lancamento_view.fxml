@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            styleClass="root"
+            prefWidth="1100.0" prefHeight="700.0">
+
+    <center>
+        <VBox spacing="12.0">
+            <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+
+            <Label text="Lançamento de Consulta" styleClass="section-title"/>
+
+            <SplitPane dividerPositions="0.55">
+                <VBox spacing="12.0" styleClass="form">
+                    <padding><Insets top="12" right="16" bottom="16" left="16"/></padding>
+
+                    <GridPane hgap="10.0" vgap="10.0">
+                        <Label text="Paciente" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                        <ComboBox fx:id="cbPaciente" promptText="Selecione o paciente..."
+                                  editable="true"
+                                  GridPane.rowIndex="0" GridPane.columnIndex="1"
+                                  GridPane.hgrow="ALWAYS"/>
+
+                        <Label text="Médico" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                        <ComboBox fx:id="cbMedico" promptText="Selecione o médico..."
+                                  editable="true"
+                                  GridPane.rowIndex="1" GridPane.columnIndex="1"
+                                  GridPane.hgrow="ALWAYS"/>
+
+                        <Label text="Data" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                        <DatePicker fx:id="dpDataConsulta"
+                                    GridPane.rowIndex="2" GridPane.columnIndex="1"
+                                    GridPane.hgrow="ALWAYS"/>
+                    </GridPane>
+
+                    <Label text="Observações" styleClass="section-title"/>
+                    <TextArea fx:id="txtObsConsulta"
+                              promptText="Descreva sintomas, diagnóstico e conduta..."
+                              wrapText="true" VBox.vgrow="ALWAYS"/>
+                </VBox>
+
+                <VBox spacing="12.0" styleClass="form">
+                    <padding><Insets top="12" right="16" bottom="16" left="16"/></padding>
+
+                    <Label text="Receita (Medicamentos)" styleClass="section-title"/>
+
+                    <HBox spacing="10.0" alignment="CENTER_LEFT">
+                        <TextField fx:id="txtBuscaMedicamento"
+                                   promptText="Digite o nome do medicamento..."
+                                   HBox.hgrow="ALWAYS"/>
+                        <Button fx:id="btnAddMedicamento" text="+ Adicionar" styleClass="btn-primary"/>
+                    </HBox>
+
+                    <TableView fx:id="tblReceita" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colMedNome" text="Medicamento" prefWidth="220.0"/>
+                            <TableColumn fx:id="colMedDose" text="Dosagem" prefWidth="120.0"/>
+                            <TableColumn fx:id="colMedFreq" text="Frequência" prefWidth="120.0"/>
+                            <TableColumn fx:id="colMedDur" text="Duração" prefWidth="90.0"/>
+                            <TableColumn fx:id="colMedAcoes" text="Ações" prefWidth="70.0"/>
+                        </columns>
+                    </TableView>
+
+                    <HBox spacing="10.0" alignment="CENTER_RIGHT">
+                        <Button fx:id="btnImprimirReceita" text="Imprimir Receita"/>
+                    </HBox>
+                </VBox>
+            </SplitPane>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox spacing="10.0" alignment="CENTER_RIGHT" styleClass="bottom-bar">
+            <padding><Insets top="10" right="12" bottom="10" left="12"/></padding>
+            <Button fx:id="btnCancelarConsulta" text="Cancelar"/>
+            <Button fx:id="btnSalvarConsulta" text="Salvar Consulta" styleClass="btn-primary"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

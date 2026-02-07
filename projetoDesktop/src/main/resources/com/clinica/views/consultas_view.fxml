@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.clinica.controller.ConsultasController"
+            styleClass="root">
+
+    <top>
+        <VBox spacing="10.0">
+            <padding><Insets top="12" right="12" bottom="0" left="12"/></padding>
+
+            <HBox spacing="10.0" alignment="CENTER_LEFT">
+                <Label text="Consultas" styleClass="section-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="btnNova" text="Nova" onAction="#onNova" styleClass="btn-primary"/>
+                <Button fx:id="btnEditar" text="Editar" onAction="#onEditar"/>
+                <Button fx:id="btnExcluir" text="Excluir" onAction="#onExcluir" styleClass="btn-danger"/>
+            </HBox>
+
+            <HBox spacing="10.0" alignment="CENTER_LEFT">
+                <TextField fx:id="txtBusca" promptText="Buscar por paciente/médico/observação..." HBox.hgrow="ALWAYS"/>
+                <DatePicker fx:id="dpDe" promptText="De"/>
+                <DatePicker fx:id="dpAte" promptText="Até"/>
+                <ComboBox fx:id="cbStatus" promptText="Status" prefWidth="160.0"/>
+                <Button fx:id="btnLimparFiltros" text="Limpar" onAction="#onLimparFiltros"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="10.0">
+            <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+
+            <TableView fx:id="tblConsultas" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colData" text="DATA/HORA" prefWidth="160.0"/>
+                    <TableColumn fx:id="colPaciente" text="PACIENTE" prefWidth="260.0"/>
+                    <TableColumn fx:id="colMedico" text="MÉDICO" prefWidth="220.0"/>
+                    <TableColumn fx:id="colStatus" text="STATUS" prefWidth="120.0"/>
+                </columns>
+            </TableView>
+
+            <Label fx:id="lblHint"
+                   text="Dica: selecione uma consulta e clique em Editar ou dê duplo clique na linha."
+                   styleClass="hint"/>
+        </VBox>
+    </center>
+
+</BorderPane>

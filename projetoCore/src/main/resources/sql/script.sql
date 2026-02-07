@@ -85,3 +85,7 @@ CREATE TABLE receita_medicamento (
     FOREIGN KEY (id_receita) REFERENCES receita(id_receita),
     FOREIGN KEY (id_medicamento) REFERENCES medicamento(id_medicamento)
 );
+
+SELECT * FROM paciente;
+
+

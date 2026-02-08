@@ -6,21 +6,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class App extends Application {
-
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/com/clinica/main.fxml"));
-
-        Scene scene = new Scene(root);
-        stage.setTitle("Sistema Clínica - Desktop");
-        stage.setScene(scene);
+        stage.setTitle("Clínica - Desktop");
+        stage.setScene(new Scene(root));
+        stage.setMinWidth(1100);
+        stage.setMinHeight(700);
         stage.show();
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
 }

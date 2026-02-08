@@ -6,77 +6,80 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.clinica.controller.PacientesController"
             styleClass="root">
 
     <center>
-        <SplitPane dividerPositions="0.60">
+        <SplitPane fx:id="split" dividerPositions="0.60">
             <!-- Lista -->
-            <VBox spacing="10.0">
+            <VBox spacing="10">
                 <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
 
-                <HBox spacing="10.0" alignment="CENTER_LEFT">
-                    <Label text="Pesquisar Pacientes:"/>
-                    <TextField fx:id="txtBuscaPaciente" promptText="Nome ou CPF..." HBox.hgrow="ALWAYS"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Pacientes" styleClass="section-title"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="Novo" />
+                    <Button text="Salvar" styleClass="btn-primary"/>
+                    <Button text="Excluir" styleClass="btn-danger"/>
                 </HBox>
+
+                <TextField fx:id="txtBusca" promptText="Buscar por Nome ou CPF..." />
 
                 <TableView fx:id="tblPacientes" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="colPacCpf" text="CPF" prefWidth="160.0"/>
-                        <TableColumn fx:id="colPacNome" text="NOME" prefWidth="280.0"/>
-                        <TableColumn fx:id="colPacNasc" text="DATA NASCIMENTO" prefWidth="180.0"/>
+                        <TableColumn fx:id="colCpf" text="CPF" prefWidth="160"/>
+                        <TableColumn fx:id="colNome" text="NOME" prefWidth="280"/>
+                        <TableColumn fx:id="colNasc" text="DATA NASC." prefWidth="140"/>
+                        <TableColumn fx:id="colTel" text="TELEFONE" prefWidth="160"/>
                     </columns>
                 </TableView>
             </VBox>
 
-            <!-- Formulário -->
+            <!-- Form -->
             <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
                 <content>
-                    <VBox spacing="12.0" styleClass="form">
+                    <VBox spacing="12" styleClass="form">
                         <padding><Insets top="12" right="16" bottom="16" left="16"/></padding>
 
-                        <GridPane hgap="10.0" vgap="10.0">
+                        <Label text="Cadastro" styleClass="section-title"/>
+
+                        <GridPane hgap="10" vgap="10">
+                            <columnConstraints>
+                                <ColumnConstraints minWidth="100"/>
+                                <ColumnConstraints hgrow="ALWAYS"/>
+                            </columnConstraints>
+
                             <Label text="CPF" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                            <TextField fx:id="txtCpf" promptText="000.000.000-00"
-                                       GridPane.rowIndex="0" GridPane.columnIndex="1"
-                                       GridPane.hgrow="ALWAYS"/>
+                            <TextField fx:id="txtCpf" promptText="Somente números" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
                             <Label text="Nome" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                            <TextField fx:id="txtNome" promptText="Nome completo"
-                                       GridPane.rowIndex="1" GridPane.columnIndex="1"
-                                       GridPane.hgrow="ALWAYS"/>
+                            <TextField fx:id="txtNome" promptText="Nome completo" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-                            <Label text="Data Nasc" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                            <DatePicker fx:id="dpNascimento"
-                                        GridPane.rowIndex="2" GridPane.columnIndex="1"
-                                        GridPane.hgrow="ALWAYS"/>
+                            <Label text="Data Nasc." GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                            <DatePicker fx:id="dpNasc" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
                         </GridPane>
 
                         <Separator/>
 
                         <Label text="Telefones" styleClass="section-title"/>
 
-                        <HBox spacing="10.0" alignment="CENTER_LEFT">
+                        <HBox spacing="10" alignment="CENTER_LEFT">
                             <TextField fx:id="txtTelefone" promptText="(00) 00000-0000" HBox.hgrow="ALWAYS"/>
-                            <ComboBox fx:id="cbTipoTelefone" promptText="Tipo" prefWidth="140.0"/>
-                            <Button fx:id="btnAddTelefone" text="+ Adicionar" styleClass="btn-primary"/>
+                            <Button text="+ Adicionar" />
                         </HBox>
 
-                        <TableView fx:id="tblTelefones" prefHeight="160.0">
+                        <TableView fx:id="tblTelefones" prefHeight="180">
                             <columns>
-                                <TableColumn fx:id="colTelNumero" text="Número" prefWidth="240.0"/>
-                                <TableColumn fx:id="colTelTipo" text="Tipo" prefWidth="140.0"/>
-                                <TableColumn fx:id="colTelAcoes" text="Ações" prefWidth="90.0"/>
+                                <TableColumn fx:id="colTelNumero2" text="Número" prefWidth="420"/>
+                                <TableColumn fx:id="colTelAcao" text="Ação" prefWidth="110"/>
                             </columns>
                         </TableView>
 
-                        <HBox spacing="10.0" alignment="CENTER_RIGHT">
-                            <Button fx:id="btnNovoPaciente" text="Novo Paciente"/>
-                            <Button fx:id="btnSalvarPaciente" text="Salvar" styleClass="btn-primary"/>
-                            <Button fx:id="btnExcluirPaciente" text="Excluir" styleClass="btn-danger"/>
-                        </HBox>
+                        <Label fx:id="lblFormHint" text="Dica: selecione um paciente na tabela para editar." styleClass="hint"/>
                     </VBox>
                 </content>
             </ScrollPane>
+
         </SplitPane>
     </center>
 

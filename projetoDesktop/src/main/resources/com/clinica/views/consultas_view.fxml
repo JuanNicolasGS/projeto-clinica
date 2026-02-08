@@ -10,43 +10,45 @@
             styleClass="root">
 
     <top>
-        <VBox spacing="10.0">
+        <VBox spacing="10">
             <padding><Insets top="12" right="12" bottom="0" left="12"/></padding>
 
-            <HBox spacing="10.0" alignment="CENTER_LEFT">
+            <HBox spacing="10" alignment="CENTER_LEFT">
                 <Label text="Consultas" styleClass="section-title"/>
                 <Region HBox.hgrow="ALWAYS"/>
-                <Button fx:id="btnNova" text="Nova" onAction="#onNova" styleClass="btn-primary"/>
-                <Button fx:id="btnEditar" text="Editar" onAction="#onEditar"/>
-                <Button fx:id="btnExcluir" text="Excluir" onAction="#onExcluir" styleClass="btn-danger"/>
+                <Button text="Nova"  styleClass="btn-primary"/>
+                <Button text="Editar" />
+                <Button text="Receita" />
+                <Button text="Excluir" styleClass="btn-danger"/>
             </HBox>
 
-            <HBox spacing="10.0" alignment="CENTER_LEFT">
-                <TextField fx:id="txtBusca" promptText="Buscar por paciente/médico/observação..." HBox.hgrow="ALWAYS"/>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <TextField fx:id="txtBusca" promptText="Buscar por paciente, profissional ou observações..." HBox.hgrow="ALWAYS"/>
                 <DatePicker fx:id="dpDe" promptText="De"/>
                 <DatePicker fx:id="dpAte" promptText="Até"/>
-                <ComboBox fx:id="cbStatus" promptText="Status" prefWidth="160.0"/>
-                <Button fx:id="btnLimparFiltros" text="Limpar" onAction="#onLimparFiltros"/>
+                <ComboBox fx:id="cbClinica" promptText="Clínica" prefWidth="220"/>
+                <Button text="Filtrar"  styleClass="btn-primary"/>
+                <Button text="Limpar" />
             </HBox>
         </VBox>
     </top>
 
     <center>
-        <VBox spacing="10.0">
+        <VBox spacing="10">
             <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
 
             <TableView fx:id="tblConsultas" VBox.vgrow="ALWAYS">
                 <columns>
-                    <TableColumn fx:id="colData" text="DATA/HORA" prefWidth="160.0"/>
-                    <TableColumn fx:id="colPaciente" text="PACIENTE" prefWidth="260.0"/>
-                    <TableColumn fx:id="colMedico" text="MÉDICO" prefWidth="220.0"/>
-                    <TableColumn fx:id="colStatus" text="STATUS" prefWidth="120.0"/>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="70"/>
+                    <TableColumn fx:id="colData" text="DATA" prefWidth="120"/>
+                    <TableColumn fx:id="colPaciente" text="PACIENTE" prefWidth="260"/>
+                    <TableColumn fx:id="colProfissional" text="PROFISSIONAL" prefWidth="240"/>
+                    <TableColumn fx:id="colClinica" text="CLÍNICA" prefWidth="220"/>
+                    <TableColumn fx:id="colValor" text="VALOR" prefWidth="120"/>
                 </columns>
             </TableView>
 
-            <Label fx:id="lblHint"
-                   text="Dica: selecione uma consulta e clique em Editar ou dê duplo clique na linha."
-                   styleClass="hint"/>
+            <Label text="Dica: duplo clique na linha para editar." styleClass="hint"/>
         </VBox>
     </center>
 

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.clinica.controller.ReceitaModalController"
+            styleClass="root"
+            prefWidth="780" prefHeight="560">
+
+    <center>
+        <VBox spacing="12" styleClass="form">
+            <padding><Insets top="12" right="16" bottom="16" left="16"/></padding>
+
+            <Label fx:id="lblTitulo" text="Receita" styleClass="section-title"/>
+
+            <GridPane hgap="10" vgap="10">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="110"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+
+                <Label text="Data" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="dpData" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Validade" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="dpValidade" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <Label text="Observações" styleClass="section-title"/>
+            <TextArea fx:id="txtObs" promptText="Observações..." wrapText="true" prefRowCount="5"/>
+
+            <Separator/>
+
+            <Label text="Medicamentos" styleClass="section-title"/>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <TextField fx:id="txtBuscaMed" promptText="Buscar/Adicionar medicamento..." HBox.hgrow="ALWAYS"/>
+                <Button text="+ Adicionar"  styleClass="btn-primary"/>
+            </HBox>
+
+            <TableView fx:id="tblMedicamentos" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colMedNome" text="Medicamento" prefWidth="560"/>
+                    <TableColumn fx:id="colMedAcao" text="Ação" prefWidth="140"/>
+                </columns>
+            </TableView>
+
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Button text="Fechar" />
+                <Button text="Salvar"  styleClass="btn-primary"/>
+            </HBox>
+        </VBox>
+    </center>
+
+</BorderPane>

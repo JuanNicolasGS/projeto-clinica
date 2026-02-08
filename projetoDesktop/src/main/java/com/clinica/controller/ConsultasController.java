@@ -10,20 +10,13 @@ import javafx.stage.Stage;
 
 public class ConsultasController {
 
-    @FXML private TableView<?> tblConsultas; // depois você troca para TableView<Consulta>
-    @FXML private ComboBox<String> cbStatus;
-    @FXML private TextField txtBusca;
-    @FXML private DatePicker dpDe, dpAte;
+    @FXML private TableView<Object> tblConsultas;
 
     @FXML
     private void initialize() {
-        // Exemplo de status. Depois você preenche do seu enum/tabela.
-        cbStatus.getItems().setAll("Todas", "Agendada", "Realizada", "Cancelada");
-        cbStatus.setValue("Todas");
-
-        // Duplo clique abre editar
+        // Duplo clique abre modal de edição (visual)
         tblConsultas.setRowFactory(tv -> {
-            TableRow<?> row = new TableRow<>();
+            TableRow<Object> row = new TableRow<>();
             row.setOnMouseClicked(e -> {
                 if (e.getClickCount() == 2 && !row.isEmpty()) {
                     onEditar();
@@ -35,77 +28,63 @@ public class ConsultasController {
 
     @FXML
     public void onNova() {
-        openConsultaModal(null); // null = nova
+        openConsultaModal("Nova Consulta");
     }
 
     @FXML
     public void onEditar() {
-        Object selected = tblConsultas.getSelectionModel().getSelectedItem();
-        if (selected == null) {
-            alert("Selecione uma consulta para editar.");
+        if (tblConsultas.getSelectionModel().getSelectedItem() == null) {
+            info("Selecione uma consulta (visual).");
             return;
         }
-        openConsultaModal(selected);
+        openConsultaModal("Editar Consulta");
+    }
+
+    @FXML
+    public void onReceita() {
+        if (tblConsultas.getSelectionModel().getSelectedItem() == null) {
+            info("Selecione uma consulta (visual).");
+            return;
+        }
+        openReceitaModal();
     }
 
     @FXML
     public void onExcluir() {
-        Object selected = tblConsultas.getSelectionModel().getSelectedItem();
-        if (selected == null) {
-            alert("Selecione uma consulta para excluir.");
-            return;
-        }
-
-        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
-        confirm.setTitle("Confirmar exclusão");
-        confirm.setHeaderText("Excluir consulta selecionada?");
-        confirm.setContentText("Essa ação não pode ser desfeita.");
-        confirm.showAndWait().ifPresent(btn -> {
-            if (btn == ButtonType.OK) {
-                // TODO: chamar seu service/DAO para excluir
-                // TODO: atualizar tabela (reload)
-            }
-        });
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+        a.setTitle("Excluir");
+        a.setHeaderText("Excluir consulta?");
+        a.setContentText("Apenas visual (sem banco).");
+        a.showAndWait();
     }
 
-    @FXML
-    public void onLimparFiltros() {
-        txtBusca.clear();
-        dpDe.setValue(null);
-        dpAte.setValue(null);
-        cbStatus.setValue("Todas");
-        // TODO: recarregar tabela sem filtros
+    /* ===================== MODAIS ===================== */
+
+    private void openConsultaModal(String title) {
+        openModal("/com/clinica/views/modals/consulta_modal.fxml", title);
     }
 
-    private void openConsultaModal(Object consultaOrNull) {
+    private void openReceitaModal() {
+        openModal("/com/clinica/views/modals/receita_modal.fxml", "Receita");
+    }
+
+    private void openModal(String fxml, String title) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/clinica/views/consulta_modal.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
-
-            ConsultaModalController controller = loader.getController();
-            controller.setConsulta(consultaOrNull); // você vai tipar depois para Consulta
 
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle(consultaOrNull == null ? "Nova Consulta" : "Editar Consulta");
+            stage.setTitle(title);
             stage.setScene(new Scene(root));
             stage.setResizable(false);
             stage.showAndWait();
-
-            if (controller.isSaved()) {
-                // TODO: recarregar tabela (reload)
-            }
         } catch (Exception ex) {
-            ex.printStackTrace();
-            alert("Erro ao abrir modal: " + ex.getMessage());
+            info("Erro ao abrir modal:\n" + ex.getMessage());
         }
     }
 
-    private void alert(String msg) {
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-        a.setTitle("Aviso");
-        a.setHeaderText(null);
-        a.setContentText(msg);
-        a.showAndWait();
+    private void info(String msg) {
+        new Alert(Alert.AlertType.INFORMATION, msg).showAndWait();
     }
 }

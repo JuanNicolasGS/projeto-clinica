@@ -6,63 +6,84 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.clinica.controller.ProfissionaisController"
             styleClass="root">
 
     <center>
-        <SplitPane dividerPositions="0.60">
+        <SplitPane fx:id="split" dividerPositions="0.62">
             <!-- Lista -->
-            <VBox spacing="10.0">
+            <VBox spacing="10">
                 <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
 
-                <HBox spacing="10.0" alignment="CENTER_LEFT">
-                    <Label text="Pesquisar Profissionais:"/>
-                    <TextField fx:id="txtBuscaProfissional" promptText="Nome ou especialidade..." HBox.hgrow="ALWAYS"/>
-                    <Button fx:id="btnNovoProf" text="Novo" styleClass="btn-primary"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Profissionais" styleClass="section-title"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="Novo" />
+                    <Button text="Salvar"  styleClass="btn-primary"/>
+                    <Button text="Excluir"  styleClass="btn-danger"/>
                 </HBox>
+
+                <TextField fx:id="txtBusca" promptText="Buscar por nome, especialidade ou registro..." />
 
                 <TableView fx:id="tblProfissionais" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="colProfNome" text="NOME" prefWidth="320.0"/>
-                        <TableColumn fx:id="colProfEsp" text="ESPECIALIDADE" prefWidth="240.0"/>
-                        <TableColumn fx:id="colProfAtivo" text="ATIVO" prefWidth="80.0"/>
+                        <TableColumn fx:id="colId" text="ID" prefWidth="70"/>
+                        <TableColumn fx:id="colNome" text="NOME" prefWidth="240"/>
+                        <TableColumn fx:id="colEsp" text="ESPECIALIDADE" prefWidth="200"/>
+                        <TableColumn fx:id="colReg" text="REGISTRO" prefWidth="140"/>
+                        <TableColumn fx:id="colClinica" text="CLÍNICA" prefWidth="180"/>
                     </columns>
                 </TableView>
             </VBox>
 
-            <!-- Formulário -->
+            <!-- Form -->
             <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
                 <content>
-                    <VBox spacing="12.0" styleClass="form">
+                    <VBox spacing="12" styleClass="form">
                         <padding><Insets top="12" right="16" bottom="16" left="16"/></padding>
 
-                        <Label text="Formulário do Profissional" styleClass="section-title"/>
+                        <Label text="Cadastro" styleClass="section-title"/>
 
-                        <GridPane hgap="10.0" vgap="10.0">
-                            <Label text="Nome" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                            <TextField fx:id="txtProfNome" promptText="Nome completo"
-                                       GridPane.rowIndex="0" GridPane.columnIndex="1"
-                                       GridPane.hgrow="ALWAYS"/>
+                        <GridPane hgap="10" vgap="10">
+                            <columnConstraints>
+                                <ColumnConstraints minWidth="110"/>
+                                <ColumnConstraints hgrow="ALWAYS"/>
+                            </columnConstraints>
 
-                            <Label text="Especialidade" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                            <ComboBox fx:id="cbEspecialidade" promptText="Selecione..."
-                                      GridPane.rowIndex="1" GridPane.columnIndex="1"
-                                      GridPane.hgrow="ALWAYS"/>
+                            <Label text="Clínica" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                            <ComboBox fx:id="cbClinica" promptText="Selecione..." GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-                            <Label text="Ativo" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                            <CheckBox fx:id="chkProfAtivo" text="Profissional ativo"
-                                      GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                            <Label text="Nome" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                            <TextField fx:id="txtNome" promptText="Nome completo" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                            <Label text="Especialidade" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                            <TextField fx:id="txtEspecialidade" promptText="Ex: Cardiologia" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                            <Label text="Registro" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                            <TextField fx:id="txtRegistro" promptText="CRM/Registro" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
                         </GridPane>
 
                         <Separator/>
 
-                        <HBox spacing="10.0" alignment="CENTER_RIGHT">
-                            <Button fx:id="btnCancelarProf" text="Cancelar"/>
-                            <Button fx:id="btnSalvarProf" text="Salvar" styleClass="btn-primary"/>
-                            <Button fx:id="btnExcluirProf" text="Excluir" styleClass="btn-danger"/>
+                        <Label text="Telefones" styleClass="section-title"/>
+
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <TextField fx:id="txtTelefone" promptText="(00) 00000-0000" HBox.hgrow="ALWAYS"/>
+                            <Button text="+ Adicionar" />
                         </HBox>
+
+                        <TableView fx:id="tblTelefones" prefHeight="180">
+                            <columns>
+                                <TableColumn fx:id="colTelNumero" text="Número" prefWidth="420"/>
+                                <TableColumn fx:id="colTelAcao" text="Ação" prefWidth="110"/>
+                            </columns>
+                        </TableView>
+
+                        <Label fx:id="lblFormHint" text="Dica: selecione um profissional na tabela para editar." styleClass="hint"/>
                     </VBox>
                 </content>
             </ScrollPane>
+
         </SplitPane>
     </center>
 

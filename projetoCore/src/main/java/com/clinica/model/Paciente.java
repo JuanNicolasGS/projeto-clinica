@@ -30,6 +30,4 @@ public class Paciente extends Pessoa{
     public void setDataNasc(Date dataNasc) {
         this.dataNasc = dataNasc;
     }
-
-
 }

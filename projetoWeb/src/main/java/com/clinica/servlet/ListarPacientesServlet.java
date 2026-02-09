@@ -18,15 +18,11 @@ public class ListarPacientesServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-
         try {
             PacienteDAO dao = new PacienteDAO();
             List<Paciente> pacientes = dao.listar();
-
             req.setAttribute("listaPacientes", pacientes);
-
             req.getRequestDispatcher("pacientes-lista.jsp").forward(req, resp);
-
         } catch (Exception e) {
             throw new ServletException("Erro ao listar pacientes", e);
         }

@@ -3,6 +3,7 @@ package com.clinica.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,9 +40,14 @@ public class PacienteDAO {
             c.commit();
             return true;
         } catch (Exception e){
-            if (c != null) c.rollback();
-            e.printStackTrace();
-            return false;
+            if (c != null) {
+                try {
+                    c.rollback();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            throw e;
         } finally {
             if (c != null) c.close();
         }

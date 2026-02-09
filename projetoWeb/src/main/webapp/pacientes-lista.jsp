@@ -49,7 +49,6 @@
 
             <h1>Pacientes Cadastrados</h1>
 
-            <!-- ===== MENSAGEM DE ERRO ===== -->
             <c:if test="${not empty erro}">
                 <div style="
                     background:#ffebee;
@@ -60,7 +59,6 @@
                 </div>
             </c:if>
 
-            <!-- ===== FORM BUSCA ===== -->
             <form action="${pageContext.request.contextPath}/BuscarPaciente"
                 method="GET"
                 style="width: 100%; margin-bottom: 30px; display: flex; gap: 10px;">
@@ -78,7 +76,6 @@
                 </button>
             </form>
 
-            <!-- ===== TABELA ===== -->
             <table class="pacientes-table">
                 <thead>
                 <tr>
@@ -93,7 +90,6 @@
                     <tr>
                         <td>${p.nome}</td>
 
-                        <!-- ✅ FORMATAÇÃO CORRETA -->
                         <td>
                             <%= CPFUtil.formatar(
                                 ((com.clinica.model.Paciente)pageContext

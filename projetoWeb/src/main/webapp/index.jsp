@@ -10,7 +10,6 @@
   <body>
     <div class="form-container">
       <h1>Menu Principal</h1>
-
       <main style="width: 100%">
         <div class="buttons-grid">
           <a href="${pageContext.request.contextPath}/listarPacientes" class="button btn-info">

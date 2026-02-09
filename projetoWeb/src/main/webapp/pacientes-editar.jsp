@@ -15,7 +15,6 @@
 <div class="form-container">
   <h1>Editar Cadastro</h1>
 
-  <!-- Mensagens (pode setar req.setAttribute("erro", "...") / ("sucesso", "...") no servlet -->
   <c:if test="${not empty erro}">
     <div class="alert alert-error">${erro}</div>
   </c:if>
@@ -24,7 +23,6 @@
     <div class="alert alert-success">${sucesso}</div>
   </c:if>
 
-  <!-- Se paciente não existir no request -->
   <c:if test="${empty paciente}">
     <div class="alert alert-error">
       Paciente não carregado. Volte e tente novamente.
@@ -38,8 +36,6 @@
     <form action="${pageContext.request.contextPath}/EditarPaciente"
           method="POST"
           style="width: 100%">
-
-      <!-- CPF deve ir SEMPRE no POST como hidden (PK) -->
       <input type="hidden" name="cpf" value="${paciente.cpf}" />
 
       <div class="form-group">
@@ -49,7 +45,6 @@
 
       <div class="form-group">
         <label>CPF (Não editável):</label>
-        <!-- readonly só para visual; o valor "real" vai no hidden -->
         <input type="text"
                value="${paciente.cpf}"
                readonly
@@ -60,11 +55,6 @@
       <div class="form-group">
         <label>Data de Nascimento:</label>
 
-        <!--
-            INPUT DATE exige yyyy-MM-dd.
-            Se paciente.dataNasc for java.sql.Date, ${paciente.dataNasc} normalmente já vira yyyy-MM-dd.
-            Se vier em outro formato, o safe fallback abaixo evita quebrar.
-          -->
         <input type="date" name="dataNascimento" value="${dataNascISO}" required />
 
       </div>
@@ -102,7 +92,6 @@
       <div class="form-actions">
         <button type="submit" class="button btn-success">Atualizar Dados</button>
 
-        <!-- Melhor voltar pra listagem, não pro index.jsp -->
         <a href="${pageContext.request.contextPath}/BuscarPaciente" class="button btn-neutral">
           Cancelar Alterações
         </a>
@@ -113,7 +102,6 @@
 
 <script src="${pageContext.request.contextPath}/js/paciente.js"></script>
 
-<!-- Fallback caso seu paciente.js não tenha essas funções -->
 <script>
   if (typeof adicionarTelefone !== "function") {
     function adicionarTelefone() {
@@ -134,7 +122,6 @@
       if (!row) return;
 
       const container = document.getElementById("telefones-container");
-      // Se for o último, limpa o campo ao invés de remover tudo
       if (container.querySelectorAll(".telefone-row").length <= 1) {
         const input = row.querySelector("input[name='telefones']");
         if (input) input.value = "";

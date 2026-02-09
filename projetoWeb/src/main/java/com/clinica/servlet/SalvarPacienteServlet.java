@@ -30,24 +30,24 @@ public class SalvarPacienteServlet extends HttpServlet{
 
             if (!CPFUtil.isValido(cpf)) {
                 req.setAttribute("erro", "CPF inválido!");
-                req.getRequestDispatcher("/paciente/form.jsp").forward(req, resp);
+                req.getRequestDispatcher("paciente-form.jsp").forward(req, resp);
                 return;
             }
 
             String dataStr = req.getParameter("dataNascimento");
             java.sql.Date dataNasc = java.sql.Date.valueOf(dataStr);
 
-            String[] telefones = req.getParameterValues("telefone");
+            String[] telefones = req.getParameterValues("telefones");
 
             List<String> telefonesArray = new ArrayList<>();
 
             if (telefones != null) {
                 for (String tel : telefones) {
+                    if (tel == null || tel.trim().isEmpty()) continue;
 
                     if (!TelefoneUtil.isValido(tel)) {
                         req.setAttribute("erro", "Telefone inválido: " + tel +". Use formato (11) 99999-8888");
-
-                        req.getRequestDispatcher("/paciente/form.jsp").forward(req, resp);
+                        req.getRequestDispatcher("paciente-form.jsp").forward(req, resp);
                         return;
                     }
 
@@ -72,10 +72,7 @@ public class SalvarPacienteServlet extends HttpServlet{
 
         } catch (Exception e){
             e.printStackTrace();
-            resp.sendError(
-                HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                "Erro ao salvar paciente."
-            );
+            throw new ServletException("Erro ao processar requisição", e);
         }
     }
 }

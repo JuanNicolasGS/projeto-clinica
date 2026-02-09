@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -14,6 +15,12 @@
     <div class="form-container">
       <h1>Cadastro de Paciente</h1>
 
+      <c:if test="${not empty erro}">
+          <div style="color: red; margin-bottom: 15px; text-align: center; background-color: #ffdddd; border: 1px solid #ff9999; padding: 10px; border-radius: 5px;">
+              <strong>Erro:</strong> ${erro}
+          </div>
+      </c:if>
+
       <form
         action="${pageContext.request.contextPath}/SalvarPaciente"
         method="POST"
@@ -26,12 +33,13 @@
             name="nome"
             required
             placeholder="Digite o nome completo"
+            value="${param.nome}"
           />
         </div>
 
         <div class="form-group">
           <label>CPF:</label>
-          <input type="text" name="cpf" required placeholder="000.000.000-00" />
+          <input type="text" name="cpf" required placeholder="000.000.000-00" value="${param.cpf}" />
         </div>
 
         <div class="form-group">
@@ -41,6 +49,7 @@
             name="dataNascimento"
             required
             placeholder="dd/mm/yyyy"
+            value="${param.dataNascimento}"
           />
         </div>
 
@@ -54,6 +63,7 @@
                 placeholder="(11) 99999-8888"
                 pattern="\(\d{2}\) \d{4,5}-\d{4}"
                 required
+                value="${param.telefones}"
               />
               <button
                 type="button"

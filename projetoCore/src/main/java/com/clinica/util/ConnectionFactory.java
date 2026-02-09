@@ -12,7 +12,6 @@ public class ConnectionFactory {
     public static Connection getConnection() throws SQLException {
         try {
             Class.forName("org.postgresql.Driver");
-            
             return DriverManager.getConnection(URL, USER, PASS);
         } catch (ClassNotFoundException e) {
             throw new SQLException("Driver PostgreSQL não encontrado", e);

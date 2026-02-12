@@ -1,55 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
 
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.clinica.controller.ConsultasController"
+            stylesheets="@../css/app.css"
+            prefWidth="1200.0" prefHeight="720.0"
             styleClass="root">
 
-    <top>
-        <VBox spacing="10">
-            <padding><Insets top="12" right="12" bottom="0" left="12"/></padding>
+    <left>
+        <VBox prefWidth="200.0" spacing="6.0" styleClass="sidebar">
+            <Label text="CLÍNICA"/>
 
-            <HBox spacing="10" alignment="CENTER_LEFT">
-                <Label text="Consultas" styleClass="section-title"/>
-                <Region HBox.hgrow="ALWAYS"/>
-                <Button text="Nova"  styleClass="btn-primary"/>
-                <Button text="Editar" />
-                <Button text="Receita" />
-                <Button text="Excluir" styleClass="btn-danger"/>
-            </HBox>
-
-            <HBox spacing="10" alignment="CENTER_LEFT">
-                <TextField fx:id="txtBusca" promptText="Buscar por paciente, profissional ou observações..." HBox.hgrow="ALWAYS"/>
-                <DatePicker fx:id="dpDe" promptText="De"/>
-                <DatePicker fx:id="dpAte" promptText="Até"/>
-                <ComboBox fx:id="cbClinica" promptText="Clínica" prefWidth="220"/>
-                <Button text="Filtrar"  styleClass="btn-primary"/>
-                <Button text="Limpar" />
-            </HBox>
+            <Button fx:id="btnPacientes" text="Pacientes" mnemonicParsing="false" styleClass="menu-button"/>
+            <Button fx:id="btnProfissionais" text="Profissionais" mnemonicParsing="false" styleClass="menu-button"/>
+            <Button fx:id="btnConsultas" text="Consultas" mnemonicParsing="false" styleClass="menu-button,menu-selected"/>
+            <Button fx:id="btnLancamento" text="Lançamento" mnemonicParsing="false" styleClass="menu-button"/>
         </VBox>
-    </top>
+    </left>
 
     <center>
-        <VBox spacing="10">
-            <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+        <BorderPane>
+            <padding>
+                <Insets top="14" right="14" bottom="0" left="14"/>
+            </padding>
 
-            <TableView fx:id="tblConsultas" VBox.vgrow="ALWAYS">
-                <columns>
-                    <TableColumn fx:id="colId" text="ID" prefWidth="70"/>
-                    <TableColumn fx:id="colData" text="DATA" prefWidth="120"/>
-                    <TableColumn fx:id="colPaciente" text="PACIENTE" prefWidth="260"/>
-                    <TableColumn fx:id="colProfissional" text="PROFISSIONAL" prefWidth="240"/>
-                    <TableColumn fx:id="colClinica" text="CLÍNICA" prefWidth="220"/>
-                    <TableColumn fx:id="colValor" text="VALOR" prefWidth="120"/>
-                </columns>
-            </TableView>
+            <top>
+                <VBox spacing="12.0">
+                    <HBox alignment="CENTER_LEFT" spacing="12.0">
+                        <Label text="Consultas" styleClass="section-title"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button fx:id="btnNova" text="Nova" mnemonicParsing="false" styleClass="btn-primary"/>
+                        <Button fx:id="btnEditar" text="Editar" mnemonicParsing="false"/>
+                        <Button fx:id="btnReceita" text="Receita" mnemonicParsing="false"/>
+                        <Button fx:id="btnExcluir" text="Excluir" mnemonicParsing="false" styleClass="btn-danger"/>
+                    </HBox>
 
-            <Label text="Dica: duplo clique na linha para editar." styleClass="hint"/>
-        </VBox>
+                    <HBox spacing="12.0" alignment="CENTER_LEFT">
+                        <TextField fx:id="txtBusca" promptText="Buscar por paciente, pr" prefWidth="220.0"/>
+
+                        <HBox spacing="8.0">
+                            <TextField fx:id="txtDe" promptText="De" prefWidth="150.0"/>
+                            <Button fx:id="btnDe" text="▦" mnemonicParsing="false" prefWidth="34.0" minWidth="34.0" maxWidth="34.0"/>
+                        </HBox>
+
+                        <HBox spacing="8.0">
+                            <TextField fx:id="txtAte" promptText="Até" prefWidth="150.0"/>
+                            <Button fx:id="btnAte" text="▦" mnemonicParsing="false" prefWidth="34.0" minWidth="34.0" maxWidth="34.0"/>
+                        </HBox>
+
+                        <ComboBox fx:id="cbClinica" promptText="Clínica" prefWidth="220.0"/>
+
+                        <Button fx:id="btnFiltrar" text="Filt..." mnemonicParsing="false" styleClass="btn-primary"/>
+                        <Button fx:id="btnLimpar" text="Lim..." mnemonicParsing="false"/>
+                    </HBox>
+                </VBox>
+            </top>
+
+            <center>
+                <VBox spacing="12.0">
+                    <padding>
+                        <Insets top="10" right="0" bottom="12" left="0"/>
+                    </padding>
+
+                    <TableView fx:id="tblConsultas" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colId" text="ID" prefWidth="90.0"/>
+                            <TableColumn fx:id="colData" text="DATA" prefWidth="170.0"/>
+                            <TableColumn fx:id="colPaciente" text="PACIENTE" prefWidth="260.0"/>
+                            <TableColumn fx:id="colProfissional" text="PROFISSIONAL" prefWidth="260.0"/>
+                            <TableColumn fx:id="colClinica" text="CLÍNICA" prefWidth="260.0"/>
+                            <TableColumn fx:id="colValor" text="VAL" prefWidth="110.0"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </center>
+
+            <bottom>
+                <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="bottom-bar">
+                    <padding>
+                        <Insets top="10" right="14" bottom="10" left="14"/>
+                    </padding>
+                    <Label fx:id="lblDb" text="DB: conectado"/>
+                    <Label fx:id="lblDica" text="Dica: duplo clique na linha para editar."/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="lblTela" text="Consultas"/>
+                </HBox>
+            </bottom>
+
+        </BorderPane>
     </center>
 
 </BorderPane>

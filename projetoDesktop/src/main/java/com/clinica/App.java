@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/clinica/main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/clinica/views/pacientes_view.fxml"));
         stage.setTitle("Clínica - Desktop");
         stage.setScene(new Scene(root));
         stage.setMinWidth(1100);

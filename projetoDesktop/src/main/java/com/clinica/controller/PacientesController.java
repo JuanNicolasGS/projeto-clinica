@@ -1,31 +1,24 @@
 package com.clinica.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 
-public class PacientesController {
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    @FXML
-    private void onNovo() {
-        info("Novo (visual) - aqui você pode abrir um modal depois.");
-    }
+public class PacientesController extends MainController{
+    @FXML private Button btnPacientes;
+    @FXML private Button btnProfissionais;
+    @FXML private Button btnConsultas;
+    @FXML private Button btnLancamento;
 
-    @FXML
-    private void onSalvar() {
-        info("Salvar (visual) - sem banco por enquanto.");
-    }
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        btnPacientes.setOnAction(event -> goTo((Node) event.getSource(), "/com/clinica/views/pacientes_view.fxml"));
+        btnProfissionais.setOnAction(event -> goTo((Node) event.getSource(), "/com/clinica/views/profissionais_view.fxml"));
+        btnConsultas.setOnAction(event -> goTo((Node) event.getSource(), "/com/clinica/views/consultas_view.fxml"));
+        btnLancamento.setOnAction(event -> goTo((Node) event.getSource(), "/com/clinica/views/lancamento_view.fxml"));
 
-    @FXML
-    private void onExcluir() {
-        info("Excluir (visual) - sem banco por enquanto.");
-    }
-
-    @FXML
-    private void onLimpar() {
-        info("Limpar (visual).");
-    }
-
-    private void info(String msg) {
-        new Alert(Alert.AlertType.INFORMATION, msg).showAndWait();
     }
 }

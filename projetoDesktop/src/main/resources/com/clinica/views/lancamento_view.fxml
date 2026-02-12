@@ -21,7 +21,7 @@
          </Separator>
          <ImageView fitHeight="165.0" fitWidth="171.0" pickOnBounds="true" preserveRatio="true">
             <image>
-               <Image url="@../../../../../../../../../Downloads/ChatGPT%20Image%2012%20de%20fev.%20de%202026,%2009_59_27.png" />
+                <Image url="@../img/clinica.png" />
             </image>
          </ImageView>
         </VBox>

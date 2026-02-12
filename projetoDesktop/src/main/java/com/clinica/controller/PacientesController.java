@@ -16,7 +16,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import java.io.File;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -34,6 +37,9 @@ public class PacientesController extends MainController {
 
     @FXML private Button btnSalvar;
     @FXML private Button btnExcluir;
+
+    @FXML private Button btnMais;
+    @FXML private Label lblImportarCsv;
 
     @FXML private TextField txtBusca;
 
@@ -69,6 +75,7 @@ public class PacientesController extends MainController {
 
         btnSalvar.setOnAction(e -> salvar());
         btnExcluir.setOnAction(e -> excluir());
+        btnMais.setOnAction(e -> importarCsv());
 
         tblTelefones.setOnMouseClicked(e -> {
             if (e.getClickCount() == 2) {
@@ -76,6 +83,8 @@ public class PacientesController extends MainController {
                 if (sel != null) telefones.remove(sel);
             }
         });
+
+        lblImportarCsv.setOnMouseClicked(e -> importarCsv());
 
         configurarTabelas();
         configurarBusca();
@@ -335,6 +344,35 @@ public class PacientesController extends MainController {
         a.setHeaderText(null);
         a.setContentText(msg);
         a.showAndWait();
+    }
+
+    private final PacienteDAO pacienteDAO = new PacienteDAO();
+
+    @FXML
+    private void importarCsv() {
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Selecionar CSV de Pacientes");
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV", "*.csv"));
+
+        File arquivo = fc.showOpenDialog(getStage());
+        if (arquivo == null) return;
+
+        int qtd = pacienteDAO.importarCsv(arquivo.toPath());
+        atualizarTabela();
+        abrirMensagem("Importação concluída: " + qtd + " pacientes.");
+    }
+
+    private Stage getStage() {
+        return (Stage) tblPacientes.getScene().getWindow();
+    }
+
+    private void atualizarTabela() {
+        carregarLista();
+        filtrar(txtBusca.getText());
+    }
+
+    private void abrirMensagem(String texto) {
+        alerta(Alert.AlertType.INFORMATION, texto);
     }
 }
 

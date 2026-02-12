@@ -1,14 +1,19 @@
 package com.clinica.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.BufferedReader;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.clinica.model.Paciente;
+import com.clinica.util.CPFUtil;
 import com.clinica.util.ConnectionFactory;
+import com.clinica.util.TelefoneUtil;
 
 public class PacienteDAO {
     public boolean salvar(Paciente paciente) throws Exception{
@@ -180,4 +185,90 @@ public class PacienteDAO {
             return p;
         }
     }
+
+    public int importarCsv(Path arquivo) {
+        String sqlP = "INSERT INTO paciente (cpf, nome, data_nasc) VALUES (?, ?, ?) ON CONFLICT (cpf) DO NOTHING";
+        String sqlT = "INSERT INTO paciente_telefone (cpf, telefone) VALUES (?, ?)";
+
+        int inseridos = 0;
+
+        Connection c = null;
+        try {
+            c = ConnectionFactory.getConnection();
+            c.setAutoCommit(false);
+
+            try (BufferedReader br = Files.newBufferedReader(arquivo, StandardCharsets.UTF_8);
+                 PreparedStatement psP = c.prepareStatement(sqlP);
+                 PreparedStatement psT = c.prepareStatement(sqlT)) {
+
+                String header = br.readLine();
+                if (header == null) return 0;
+
+                DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+                String linha;
+                while ((linha = br.readLine()) != null) {
+                    if (linha.isBlank()) continue;
+
+                    String[] col = linha.split(";", -1);
+
+                    String cpf = col.length > 0 ? col[0].trim().replaceAll("\\D", "") : "";
+                    String nome = col.length > 1 ? col[1].trim() : "";
+                    String dataTxt = col.length > 2 ? col[2].trim() : "";
+                    String telsTxt = col.length > 3 ? col[3].trim() : "";
+
+                    if (!CPFUtil.isValido(cpf)) continue;
+                    if (nome.isBlank()) continue;
+
+                    java.sql.Date data;
+                    try {
+                        data = java.sql.Date.valueOf(LocalDate.parse(dataTxt, fmt));
+                    } catch (Exception e) {
+                        continue;
+                    }
+
+                    psP.setString(1, cpf);
+                    psP.setString(2, nome);
+                    psP.setDate(3, data);
+                    psP.addBatch();
+
+                    if (!telsTxt.isBlank()) {
+                        String[] tels = telsTxt.split("\\|");
+                        for (String t : tels) {
+                            String telRaw = t == null ? "" : t.trim();
+                            if (!TelefoneUtil.isValido(telRaw)) continue;
+                            String tel = telRaw.replaceAll("\\D", "");
+
+                            psT.setString(1, cpf);
+                            psT.setString(2, tel);
+                            psT.addBatch();
+                        }
+                    }
+
+                    inseridos++;
+
+                    if (inseridos % 500 == 0) {
+                        psP.executeBatch();
+                        psT.executeBatch();
+                    }
+                }
+
+                psP.executeBatch();
+                psT.executeBatch();
+                c.commit();
+                return inseridos;
+            }
+        } catch (Exception e) {
+            if (c != null) {
+                try { c.rollback(); } catch (SQLException ignored) {}
+            }
+            throw new RuntimeException(e);
+        } finally {
+            if (c != null) {
+                try { c.close(); } catch (SQLException ignored) {}
+            }
+        }
+    }
+
+
 }

@@ -316,3 +316,13 @@
     -fx-text-fill: #ffffff;
     -fx-text-inner-color: #ffffff;
 }
+
+.link-label {
+    -fx-text-fill: #93c5fd;
+    -fx-cursor: hand;
+}
+
+.link-label:hover {
+    -fx-underline: true;
+}
+

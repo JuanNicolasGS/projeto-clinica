@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21"
+<BorderPane xmlns="http://javafx.com/javafx/25"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.clinica.controller.ReceitaModalController"
+            stylesheets="@../../css/app.css"
             styleClass="root"
-            prefWidth="780" prefHeight="560">
+            prefWidth="900" prefHeight="620"
+            minWidth="900" minHeight="620">
+
 
     <center>
         <VBox spacing="12" styleClass="form">
-            <padding><Insets top="12" right="16" bottom="16" left="16"/></padding>
+            <padding>
+                <Insets top="12" right="16" bottom="16" left="16"/>
+            </padding>
 
             <Label fx:id="lblTitulo" text="Receita" styleClass="section-title"/>
 
@@ -37,7 +42,7 @@
             <Label text="Medicamentos" styleClass="section-title"/>
             <HBox spacing="10" alignment="CENTER_LEFT">
                 <TextField fx:id="txtBuscaMed" promptText="Buscar/Adicionar medicamento..." HBox.hgrow="ALWAYS"/>
-                <Button text="+ Adicionar"  styleClass="btn-primary"/>
+                <Button text="+ Adicionar" styleClass="btn-primary" onAction="#adicionarMedicamento"/>
             </HBox>
 
             <TableView fx:id="tblMedicamentos" VBox.vgrow="ALWAYS">
@@ -48,8 +53,8 @@
             </TableView>
 
             <HBox spacing="10" alignment="CENTER_RIGHT">
-                <Button text="Fechar" />
-                <Button text="Salvar"  styleClass="btn-primary"/>
+                <Button text="Fechar" onAction="#fechar"/>
+                <Button text="Salvar" styleClass="btn-primary" onAction="#salvar"/>
             </HBox>
         </VBox>
     </center>

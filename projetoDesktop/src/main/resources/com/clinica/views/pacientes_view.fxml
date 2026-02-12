@@ -108,7 +108,7 @@
 
                             <HBox spacing="10.0">
                                 <TextField fx:id="txtTelefone" promptText="(00) 00000-0000" HBox.hgrow="ALWAYS" />
-                                <Button fx:id="btnAdicionarTelefone" mnemonicParsing="false" text="+ Adicionar" />
+                                <Button fx:id="btnAdicionarTelefone" mnemonicParsing="false" onAction="#addTelefones" text="+ Adicionar" />
                             </HBox>
 
                             <TableView fx:id="tblTelefones" prefHeight="270.0" prefWidth="299.0" VBox.vgrow="ALWAYS">

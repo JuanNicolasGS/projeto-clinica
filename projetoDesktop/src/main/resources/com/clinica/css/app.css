@@ -266,3 +266,53 @@
     -fx-font-style: italic;
     -fx-opacity: 0.6;
 }
+
+.text-field, .password-field, .text-area, .combo-box, .date-picker {
+    -fx-text-fill: #ffffff;
+    -fx-text-inner-color: #ffffff;
+}
+
+.text-area .content {
+    -fx-text-fill: #ffffff;
+    -fx-text-inner-color: #ffffff;
+}
+
+.text-input {
+    -fx-text-fill: #ffffff;
+    -fx-text-inner-color: #ffffff;
+    -fx-highlight-text-fill: #ffffff;
+}
+
+.text-field .text, .text-area .text {
+    -fx-fill: #ffffff;
+}
+
+.table-view .table-cell {
+    -fx-text-fill: #ffffff;
+}
+
+.table-view .table-row-cell {
+    -fx-text-fill: #ffffff;
+}
+
+.table-view .table-cell .text {
+    -fx-fill: #ffffff;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: #ffffff;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #0b1220;
+}
+
+.combo-box-popup .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #ffffff;
+}
+
+.date-picker .text-field {
+    -fx-text-fill: #ffffff;
+    -fx-text-inner-color: #ffffff;
+}

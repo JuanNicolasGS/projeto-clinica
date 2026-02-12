@@ -1,61 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.clinica.controller.ConsultasController"
-            stylesheets="@../css/app.css"
-            prefWidth="1200.0" prefHeight="720.0"
-            styleClass="root">
+<BorderPane prefHeight="720.0" prefWidth="1200.0" styleClass="root" stylesheets="@../css/app.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clinica.controller.ConsultasController">
 
     <left>
-        <VBox prefWidth="200.0" spacing="6.0" styleClass="sidebar">
-            <Label text="CLÍNICA"/>
+        <VBox alignment="TOP_CENTER" prefWidth="200.0" spacing="6.0" styleClass="sidebar">
 
-            <Button fx:id="btnPacientes" text="Pacientes" mnemonicParsing="false" styleClass="menu-button"/>
-            <Button fx:id="btnProfissionais" text="Profissionais" mnemonicParsing="false" styleClass="menu-button"/>
-            <Button fx:id="btnConsultas" text="Consultas" mnemonicParsing="false" styleClass="menu-button,menu-selected"/>
-            <Button fx:id="btnLancamento" text="Lançamento" mnemonicParsing="false" styleClass="menu-button"/>
+            <Button fx:id="btnPacientes" mnemonicParsing="false" prefHeight="34.0" prefWidth="189.0" styleClass="menu-button" text="Pacientes" />
+            <Button fx:id="btnProfissionais" mnemonicParsing="false" prefHeight="34.0" prefWidth="193.0" styleClass="menu-button" text="Profissionais" />
+            <Button fx:id="btnConsultas" mnemonicParsing="false" prefHeight="34.0" prefWidth="188.0" styleClass="menu-button,menu-selected" text="Consultas" />
+            <Button fx:id="btnLancamento" mnemonicParsing="false" prefHeight="34.0" prefWidth="191.0" styleClass="menu-button" text="Lançamento" />
+         <Separator prefWidth="200.0">
+            <VBox.margin>
+               <Insets bottom="345.0" top="15.0" />
+            </VBox.margin>
+         </Separator>
+         <ImageView fitHeight="169.0" fitWidth="184.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../../../../../../../../Downloads/ChatGPT%20Image%2012%20de%20fev.%20de%202026,%2009_59_27.png" />
+            </image>
+         </ImageView>
         </VBox>
     </left>
 
     <center>
         <BorderPane>
             <padding>
-                <Insets top="14" right="14" bottom="0" left="14"/>
+                <Insets bottom="0" left="14" right="14" top="14" />
             </padding>
 
             <top>
                 <VBox spacing="12.0">
                     <HBox alignment="CENTER_LEFT" spacing="12.0">
-                        <Label text="Consultas" styleClass="section-title"/>
-                        <Region HBox.hgrow="ALWAYS"/>
-                        <Button fx:id="btnNova" text="Nova" mnemonicParsing="false" styleClass="btn-primary"/>
-                        <Button fx:id="btnEditar" text="Editar" mnemonicParsing="false"/>
-                        <Button fx:id="btnReceita" text="Receita" mnemonicParsing="false"/>
-                        <Button fx:id="btnExcluir" text="Excluir" mnemonicParsing="false" styleClass="btn-danger"/>
+                        <Label styleClass="section-title" text="Consultas" />
+                        <Region prefHeight="34.0" prefWidth="721.0" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="btnExcluir" mnemonicParsing="false" styleClass="btn-danger" text="Excluir" />
+                        <Button fx:id="btnNova" mnemonicParsing="false" prefHeight="34.0" prefWidth="74.0" styleClass="btn-primary" text="Nova" />
+                  <VBox.margin>
+                     <Insets bottom="10.0" />
+                  </VBox.margin>
                     </HBox>
+               <Separator prefWidth="200.0" />
 
-                    <HBox spacing="12.0" alignment="CENTER_LEFT">
-                        <TextField fx:id="txtBusca" promptText="Buscar por paciente, pr" prefWidth="220.0"/>
+                    <HBox alignment="CENTER_LEFT" spacing="12.0">
+                        <TextField fx:id="txtBusca" prefHeight="36.0" prefWidth="885.0" promptText="Buscar por id...">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin></TextField>
 
-                        <HBox spacing="8.0">
-                            <TextField fx:id="txtDe" promptText="De" prefWidth="150.0"/>
-                            <Button fx:id="btnDe" text="▦" mnemonicParsing="false" prefWidth="34.0" minWidth="34.0" maxWidth="34.0"/>
-                        </HBox>
-
-                        <HBox spacing="8.0">
-                            <TextField fx:id="txtAte" promptText="Até" prefWidth="150.0"/>
-                            <Button fx:id="btnAte" text="▦" mnemonicParsing="false" prefWidth="34.0" minWidth="34.0" maxWidth="34.0"/>
-                        </HBox>
-
-                        <ComboBox fx:id="cbClinica" promptText="Clínica" prefWidth="220.0"/>
-
-                        <Button fx:id="btnFiltrar" text="Filt..." mnemonicParsing="false" styleClass="btn-primary"/>
-                        <Button fx:id="btnLimpar" text="Lim..." mnemonicParsing="false"/>
+                        <Button fx:id="btnFiltrar" mnemonicParsing="false" prefHeight="34.0" prefWidth="75.0" styleClass="btn-primary" text="Buscar" />
                     </HBox>
                 </VBox>
             </top>
@@ -63,17 +60,17 @@
             <center>
                 <VBox spacing="12.0">
                     <padding>
-                        <Insets top="10" right="0" bottom="12" left="0"/>
+                        <Insets bottom="12" left="0" right="0" top="10" />
                     </padding>
 
                     <TableView fx:id="tblConsultas" VBox.vgrow="ALWAYS">
                         <columns>
-                            <TableColumn fx:id="colId" text="ID" prefWidth="90.0"/>
-                            <TableColumn fx:id="colData" text="DATA" prefWidth="170.0"/>
-                            <TableColumn fx:id="colPaciente" text="PACIENTE" prefWidth="260.0"/>
-                            <TableColumn fx:id="colProfissional" text="PROFISSIONAL" prefWidth="260.0"/>
-                            <TableColumn fx:id="colClinica" text="CLÍNICA" prefWidth="260.0"/>
-                            <TableColumn fx:id="colValor" text="VAL" prefWidth="110.0"/>
+                            <TableColumn fx:id="colId" prefWidth="90.0" text="ID" />
+                            <TableColumn fx:id="colData" prefWidth="170.0" text="DATA" />
+                            <TableColumn fx:id="colPaciente" prefWidth="260.0" text="PACIENTE" />
+                            <TableColumn fx:id="colProfissional" prefWidth="260.0" text="PROFISSIONAL" />
+                            <TableColumn fx:id="colClinica" prefWidth="260.0" text="CLÍNICA" />
+                            <TableColumn fx:id="colValor" prefWidth="110.0" text="VAL" />
                         </columns>
                     </TableView>
                 </VBox>
@@ -82,12 +79,10 @@
             <bottom>
                 <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="bottom-bar">
                     <padding>
-                        <Insets top="10" right="14" bottom="10" left="14"/>
+                        <Insets bottom="10" left="14" right="14" top="10" />
                     </padding>
-                    <Label fx:id="lblDb" text="DB: conectado"/>
-                    <Label fx:id="lblDica" text="Dica: duplo clique na linha para editar."/>
-                    <Region HBox.hgrow="ALWAYS"/>
-                    <Label fx:id="lblTela" text="Consultas"/>
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblTela" text="Consultas" />
                 </HBox>
             </bottom>
 

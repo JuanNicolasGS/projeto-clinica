@@ -1,36 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.clinica.controller.LancamentoController"
-            stylesheets="@../css/app.css"
-            prefWidth="1200.0" prefHeight="720.0"
-            styleClass="root">
+<BorderPane prefHeight="720.0" prefWidth="1200.0" styleClass="root" stylesheets="@../css/app.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clinica.controller.LancamentoController">
 
     <left>
-        <VBox prefWidth="200.0" spacing="6.0" styleClass="sidebar">
-            <Label text="CLÍNICA"/>
+        <VBox alignment="TOP_CENTER" prefWidth="200.0" spacing="6.0" styleClass="sidebar">
 
-            <Button fx:id="btnPacientes" text="Pacientes" mnemonicParsing="false" styleClass="menu-button"/>
-            <Button fx:id="btnProfissionais" text="Profissionais" mnemonicParsing="false" styleClass="menu-button"/>
-            <Button fx:id="btnConsultas" text="Consultas" mnemonicParsing="false" styleClass="menu-button"/>
-            <Button fx:id="btnLancamento" text="Lançamento" mnemonicParsing="false" styleClass="menu-button,menu-selected"/>
+            <Button fx:id="btnPacientes" mnemonicParsing="false" prefHeight="34.0" prefWidth="194.0" styleClass="menu-button" text="Pacientes" />
+            <Button fx:id="btnProfissionais" mnemonicParsing="false" prefHeight="34.0" prefWidth="184.0" styleClass="menu-button" text="Profissionais" />
+            <Button fx:id="btnConsultas" mnemonicParsing="false" prefHeight="34.0" prefWidth="194.0" styleClass="menu-button" text="Consultas" />
+            <Button fx:id="btnLancamento" mnemonicParsing="false" prefHeight="34.0" prefWidth="189.0" styleClass="menu-button,menu-selected" text="Lançamento" />
+         <Separator prefWidth="200.0">
+            <VBox.margin>
+               <Insets bottom="345.0" top="15.0" />
+            </VBox.margin>
+         </Separator>
+         <ImageView fitHeight="165.0" fitWidth="171.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../../../../../../../../Downloads/ChatGPT%20Image%2012%20de%20fev.%20de%202026,%2009_59_27.png" />
+            </image>
+         </ImageView>
         </VBox>
     </left>
 
     <center>
         <BorderPane>
             <padding>
-                <Insets top="14" right="14" bottom="0" left="14"/>
+                <Insets bottom="0" left="14" right="14" top="14" />
             </padding>
 
             <top>
                 <HBox alignment="CENTER_LEFT" spacing="12.0">
-                    <Label text="Lançamento de Consulta" styleClass="section-title"/>
+                    <Label styleClass="section-title" text="Lançamento de Consulta" />
                 </HBox>
             </top>
 
@@ -39,58 +44,65 @@
                     <items>
                         <VBox spacing="14.0" styleClass="form">
                             <padding>
-                                <Insets top="14" right="14" bottom="14" left="14"/>
+                                <Insets bottom="14" left="14" right="14" top="14" />
                             </padding>
 
                             <GridPane hgap="12.0" vgap="12.0">
                                 <columnConstraints>
-                                    <ColumnConstraints minWidth="110.0" prefWidth="110.0"/>
-                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                    <ColumnConstraints minWidth="110.0" prefWidth="110.0" />
+                                    <ColumnConstraints hgrow="ALWAYS" />
                                 </columnConstraints>
 
-                                <Label text="Clínica" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                                <ComboBox fx:id="cbClinica" promptText="Selecione..." GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                                <Label text="Clínica" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                <ComboBox fx:id="cbClinica" prefHeight="44.0" prefWidth="387.0" promptText="Selecione..." GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                                <Label text="Paciente" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                                <ComboBox fx:id="cbPaciente" promptText="Selecione..." GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                                <Label text="Paciente" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                <ComboBox fx:id="cbPaciente" prefHeight="44.0" prefWidth="383.0" promptText="Selecione..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                                <Label text="Profissional" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                                <ComboBox fx:id="cbProfissional" promptText="Selecione..." GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                                <Label text="Profissional" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                <ComboBox fx:id="cbProfissional" prefHeight="44.0" prefWidth="382.0" promptText="Selecione..." GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-                                <Label text="Data" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-                                <HBox spacing="8.0" GridPane.rowIndex="3" GridPane.columnIndex="1">
-                                    <TextField fx:id="txtData" HBox.hgrow="ALWAYS"/>
-                                    <Button fx:id="btnCalendario" text="▦" mnemonicParsing="false" prefWidth="34.0" minWidth="34.0" maxWidth="34.0"/>
+                                <Label text="Data" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                                <HBox spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                    <TextField fx:id="txtData" HBox.hgrow="ALWAYS" />
+                                    <Button fx:id="btnCalendario" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" prefWidth="34.0" text="▦" />
                                 </HBox>
 
-                                <Label text="Valor" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-                                <TextField fx:id="txtValor" promptText="0,00" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                                <Label text="Valor" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                                <TextField fx:id="txtValor" promptText="0,00" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <rowConstraints>
+                           <RowConstraints />
+                           <RowConstraints />
+                           <RowConstraints />
+                           <RowConstraints />
+                           <RowConstraints />
+                        </rowConstraints>
                             </GridPane>
 
-                            <Label text="Observações" styleClass="section-title"/>
-                            <TextArea fx:id="txtObs" promptText="Sintomas, diagnóstico, conduta..." VBox.vgrow="ALWAYS"/>
+                            <Label styleClass="section-title" text="Observações" />
+                            <TextArea fx:id="txtObs" promptText="Sintomas, diagnóstico, conduta..." VBox.vgrow="ALWAYS" />
                         </VBox>
 
                         <VBox spacing="12.0" styleClass="form">
                             <padding>
-                                <Insets top="14" right="14" bottom="14" left="14"/>
+                                <Insets bottom="14" left="14" right="14" top="14" />
                             </padding>
 
-                            <Label text="Receita (Medicamentos)" styleClass="section-title"/>
+                            <Label styleClass="section-title" text="Receita (Medicamentos)" />
 
                             <HBox spacing="10.0">
-                                <TextField fx:id="txtBuscarMedicamento" promptText="Buscar medicamento..." HBox.hgrow="ALWAYS"/>
-                                <Button fx:id="btnAdicionarMedicamento" text="+ Adicionar" mnemonicParsing="false" styleClass="btn-primary"/>
+                                <TextField fx:id="txtBuscarMedicamento" promptText="Buscar medicamento por id..." HBox.hgrow="ALWAYS" />
+                                <Button fx:id="btnAdicionarMedicamento" mnemonicParsing="false" styleClass="btn-primary" text="+ Adicionar" />
                             </HBox>
 
                             <TableView fx:id="tblMedicamentos" VBox.vgrow="ALWAYS">
                                 <columns>
-                                    <TableColumn fx:id="colMedicamento" text="Medicamento" prefWidth="420.0"/>
+                                    <TableColumn fx:id="colMedicamento" prefWidth="420.0" text="Medicamento" />
                                 </columns>
                             </TableView>
 
                             <HBox alignment="CENTER_RIGHT">
-                                <Button fx:id="btnImprimirReceita" text="Imprimir Receita" mnemonicParsing="false"/>
+                                <Button fx:id="btnImprimirReceita" mnemonicParsing="false" text="Imprimir Receita" />
                             </HBox>
                         </VBox>
                     </items>
@@ -98,17 +110,14 @@
             </center>
 
             <bottom>
-                <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="bottom-bar">
+                <HBox alignment="CENTER_LEFT" nodeOrientation="RIGHT_TO_LEFT" spacing="12.0" styleClass="bottom-bar">
                     <padding>
-                        <Insets top="10" right="14" bottom="10" left="14"/>
+                        <Insets bottom="10" left="14" right="14" top="10" />
                     </padding>
-
-                    <Label fx:id="lblDb" text="DB: conectado"/>
-                    <Region HBox.hgrow="ALWAYS"/>
-                    <Button fx:id="btnCancelar" text="Cancelar" mnemonicParsing="false"/>
-                    <Button fx:id="btnSalvarConsulta" text="Salvar Consulta" mnemonicParsing="false" styleClass="btn-primary"/>
-                    <Region HBox.hgrow="ALWAYS"/>
-                    <Label fx:id="lblTela" text="Lançamento"/>
+                    <Button fx:id="btnSalvarConsulta" mnemonicParsing="false" styleClass="btn-primary" text="Salvar Consulta" />
+                    <Button fx:id="btnCancelar" mnemonicParsing="false" text="Cancelar" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblTela" text="Lançamento" />
                 </HBox>
             </bottom>
 

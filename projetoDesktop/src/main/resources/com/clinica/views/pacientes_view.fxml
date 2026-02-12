@@ -1,40 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.clinica.controller.PacientesController"
-            stylesheets="@../css/app.css"
-            prefWidth="1200.0" prefHeight="720.0"
-            styleClass="root">
+<BorderPane prefHeight="720.0" prefWidth="1200.0" styleClass="root" stylesheets="@../css/app.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clinica.controller.PacientesController">
 
     <left>
-        <VBox prefWidth="200.0" spacing="6.0" styleClass="sidebar">
-            <Label text="CLÍNICA"/>
+        <VBox alignment="TOP_CENTER" prefWidth="200.0" spacing="6.0" styleClass="sidebar">
 
-            <Button fx:id="btnPacientes" text="Pacientes" mnemonicParsing="false" styleClass="menu-button,menu-selected"/>
-            <Button fx:id="btnProfissionais" text="Profissionais" mnemonicParsing="false" styleClass="menu-button"/>
-            <Button fx:id="btnConsultas" text="Consultas" mnemonicParsing="false" styleClass="menu-button"/>
-            <Button fx:id="btnLancamento" text="Lançamento" mnemonicParsing="false" styleClass="menu-button"/>
+            <Button fx:id="btnPacientes" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="34.0" prefWidth="224.0" styleClass="menu-button,menu-selected" text="Pacientes" VBox.vgrow="ALWAYS">
+            <padding>
+               <Insets left="30.0" />
+            </padding></Button>
+            <Button fx:id="btnProfissionais" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="34.0" prefWidth="219.0" styleClass="menu-button" text="Profissionais" VBox.vgrow="ALWAYS">
+            <padding>
+               <Insets left="30.0" />
+            </padding></Button>
+            <Button fx:id="btnConsultas" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="34.0" prefWidth="219.0" styleClass="menu-button" text="Consultas" VBox.vgrow="ALWAYS">
+            <padding>
+               <Insets left="30.0" />
+            </padding></Button>
+            <Button fx:id="btnLancamento" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="34.0" prefWidth="226.0" styleClass="menu-button" text="Lançamento" VBox.vgrow="ALWAYS">
+            <padding>
+               <Insets left="30.0" />
+            </padding></Button>
+         <Separator prefWidth="200.0">
+            <VBox.margin>
+               <Insets bottom="345.0" top="15.0" />
+            </VBox.margin>
+         </Separator>
+         <ImageView fitHeight="169.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+            <image>
+               <Image url="@../../../../../../../../../Downloads/ChatGPT%20Image%2012%20de%20fev.%20de%202026,%2009_59_27.png" />
+            </image>
+         </ImageView>
         </VBox>
     </left>
 
     <center>
         <BorderPane>
             <padding>
-                <Insets top="14" right="14" bottom="0" left="14"/>
+                <Insets bottom="0" left="14" right="14" top="14" />
             </padding>
 
             <top>
-                <HBox alignment="CENTER_LEFT" spacing="12.0">
-                    <Label text="Pacientes" styleClass="section-title"/>
-                    <Region HBox.hgrow="ALWAYS"/>
-                    <Button fx:id="btnNovo" text="Novo" mnemonicParsing="false"/>
-                    <Button fx:id="btnSalvar" text="Salvar" mnemonicParsing="false" styleClass="btn-primary"/>
-                    <Button fx:id="btnExcluir" text="Excluir" mnemonicParsing="false" styleClass="btn-danger"/>
+                <HBox alignment="CENTER_LEFT" prefHeight="20.0" prefWidth="702.0" spacing="12.0" BorderPane.alignment="CENTER_LEFT">
+                    <Label styleClass="section-title" text="Pacientes" />
                 </HBox>
             </top>
 
@@ -43,62 +56,79 @@
                     <items>
                         <VBox spacing="12.0">
                             <padding>
-                                <Insets top="10" right="12" bottom="12" left="0"/>
+                                <Insets bottom="12" left="0" right="12" top="10" />
                             </padding>
 
-                            <TextField fx:id="txtBusca" promptText="Buscar por Nome ou CPF..." />
+                            <TextField fx:id="txtBusca" promptText="Buscar por CPF..." />
 
                             <TableView fx:id="tblPacientes" VBox.vgrow="ALWAYS">
                                 <columns>
-                                    <TableColumn fx:id="colCpf" text="CPF" prefWidth="260.0"/>
-                                    <TableColumn fx:id="colNome" text="NOME" prefWidth="420.0"/>
+                                    <TableColumn fx:id="colCpf" prefWidth="160.0" text="CPF" />
+                                    <TableColumn fx:id="colNome" prefWidth="280.0" text="NOME" />
+                           <TableColumn fx:id="colNome1" prefWidth="160.0" text="TELEFONE" />
                                 </columns>
                             </TableView>
                         </VBox>
 
-                        <VBox spacing="12.0" styleClass="form">
+                        <VBox prefWidth="329.0" spacing="12.0" styleClass="form">
                             <padding>
-                                <Insets top="14" right="14" bottom="14" left="14"/>
+                                <Insets bottom="14" left="14" right="14" top="14" />
                             </padding>
 
-                            <Label text="Cadastro" styleClass="section-title"/>
+                            <Label styleClass="section-title" text="Cadastro" />
 
                             <GridPane hgap="12.0" vgap="12.0">
                                 <columnConstraints>
-                                    <ColumnConstraints minWidth="110.0" prefWidth="110.0"/>
-                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                    <ColumnConstraints minWidth="110.0" prefWidth="110.0" />
+                                    <ColumnConstraints hgrow="ALWAYS" />
                                 </columnConstraints>
 
-                                <Label text="CPF" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                                <TextField fx:id="txtCpf" promptText="Somente números" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                                <Label text="CPF" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                <TextField fx:id="txtCpf" promptText="000.000.000-00" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                                <Label text="Nome" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                                <TextField fx:id="txtNome" promptText="Nome completo" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                                <Label text="Nome" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                <TextField fx:id="txtNome" promptText="Nome completo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                                <Label text="Data Nasc." GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                                <HBox spacing="8.0" GridPane.rowIndex="2" GridPane.columnIndex="1">
-                                    <TextField fx:id="txtDataNasc" HBox.hgrow="ALWAYS"/>
-                                    <Button fx:id="btnCalendario" text="▦" mnemonicParsing="false" prefWidth="34.0" minWidth="34.0" maxWidth="34.0"/>
-                                    <Button fx:id="btnMais" text="..." mnemonicParsing="false" prefWidth="34.0" minWidth="34.0" maxWidth="34.0"/>
+                                <Label text="Data Nasc." GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                <HBox spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                    <TextField fx:id="txtDataNasc" promptText="00/00/0000" HBox.hgrow="ALWAYS" />
+                                    <Button fx:id="btnCalendario" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" prefWidth="34.0" text="▦" />
+                                    <Button fx:id="btnMais" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" prefWidth="34.0" text="..." />
                                 </HBox>
+                        <rowConstraints>
+                           <RowConstraints />
+                           <RowConstraints />
+                           <RowConstraints />
+                        </rowConstraints>
                             </GridPane>
 
-                            <Separator/>
+                            <Separator />
 
-                            <Label text="Telefones" styleClass="section-title"/>
+                            <Label styleClass="section-title" text="Telefones" />
 
                             <HBox spacing="10.0">
-                                <TextField fx:id="txtTelefone" promptText="(00) 00000-0000" HBox.hgrow="ALWAYS"/>
-                                <Button fx:id="btnAdicionarTelefone" text="+ Adicionar" mnemonicParsing="false"/>
+                                <TextField fx:id="txtTelefone" promptText="(00) 00000-0000" HBox.hgrow="ALWAYS" />
+                                <Button fx:id="btnAdicionarTelefone" mnemonicParsing="false" text="+ Adicionar" />
                             </HBox>
 
-                            <TableView fx:id="tblTelefones" VBox.vgrow="ALWAYS">
+                            <TableView fx:id="tblTelefones" prefHeight="270.0" prefWidth="299.0" VBox.vgrow="ALWAYS">
                                 <columns>
-                                    <TableColumn fx:id="colNumero" text="Número" prefWidth="320.0"/>
+                                    <TableColumn fx:id="colNumero" prefWidth="299.0" text="Número" />
                                 </columns>
                             </TableView>
-
-                            <Label fx:id="lblDica" text="Dica: selecione um paciente na tabela para editar."/>
+                     <HBox alignment="BASELINE_LEFT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="24.0" prefWidth="299.0" VBox.vgrow="ALWAYS">
+                        <children>
+                           <Button fx:id="btnSalvar" mnemonicParsing="false" styleClass="btn-primary" text="Salvar" />
+                           <Button fx:id="btnExcluir" mnemonicParsing="false" styleClass="btn-danger" text="Excluir">
+                              <HBox.margin>
+                                 <Insets left="10.0" />
+                              </HBox.margin>
+                           </Button>
+                        </children>
+                        <padding>
+                           <Insets top="10.0" />
+                        </padding>
+                     </HBox>
                         </VBox>
                     </items>
                 </SplitPane>
@@ -107,11 +137,10 @@
             <bottom>
                 <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="bottom-bar">
                     <padding>
-                        <Insets top="10" right="14" bottom="10" left="14"/>
+                        <Insets bottom="10" left="14" right="14" top="10" />
                     </padding>
-                    <Label fx:id="lblDb" text="DB: conectado"/>
-                    <Region HBox.hgrow="ALWAYS"/>
-                    <Label fx:id="lblTela" text="Pacientes"/>
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblTela" text="Pacientes" />
                 </HBox>
             </bottom>
 
@@ -119,4 +148,3 @@
     </center>
 
 </BorderPane>
-

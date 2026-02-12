@@ -1,40 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.clinica.controller.ProfissionaisController"
-            stylesheets="@../css/app.css"
-            prefWidth="1200.0" prefHeight="720.0"
-            styleClass="root">
+<BorderPane prefHeight="720.0" prefWidth="1200.0" styleClass="root" stylesheets="@../css/app.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clinica.controller.ProfissionaisController">
 
     <left>
-        <VBox prefWidth="200.0" spacing="6.0" styleClass="sidebar">
-            <Label text="CLÍNICA"/>
+        <VBox alignment="TOP_CENTER" prefWidth="200.0" spacing="6.0" styleClass="sidebar">
 
-            <Button fx:id="btnPacientes" text="Pacientes" mnemonicParsing="false" styleClass="menu-button"/>
-            <Button fx:id="btnProfissionais" text="Profissionais" mnemonicParsing="false" styleClass="menu-button,menu-selected"/>
-            <Button fx:id="btnConsultas" text="Consultas" mnemonicParsing="false" styleClass="menu-button"/>
-            <Button fx:id="btnLancamento" text="Lançamento" mnemonicParsing="false" styleClass="menu-button"/>
+            <Button fx:id="btnPacientes" mnemonicParsing="false" prefHeight="34.0" prefWidth="213.0" styleClass="menu-button" text="Pacientes" />
+            <Button fx:id="btnProfissionais" mnemonicParsing="false" prefHeight="34.0" prefWidth="198.0" styleClass="menu-button,menu-selected" text="Profissionais" />
+            <Button fx:id="btnConsultas" mnemonicParsing="false" prefHeight="34.0" prefWidth="194.0" styleClass="menu-button" text="Consultas" />
+            <Button fx:id="btnLancamento" mnemonicParsing="false" prefHeight="34.0" prefWidth="221.0" styleClass="menu-button" text="Lançamento" />
+         <Separator prefWidth="200.0">
+            <VBox.margin>
+               <Insets bottom="345.0" top="15.0" />
+            </VBox.margin>
+         </Separator>
+         <ImageView fitHeight="164.0" fitWidth="182.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../../../../../../../../Downloads/ChatGPT%20Image%2012%20de%20fev.%20de%202026,%2009_59_27.png" />
+            </image>
+         </ImageView>
         </VBox>
     </left>
 
     <center>
         <BorderPane>
             <padding>
-                <Insets top="14" right="14" bottom="0" left="14"/>
+                <Insets bottom="0" left="14" right="14" top="14" />
             </padding>
 
             <top>
                 <HBox alignment="CENTER_LEFT" spacing="12.0">
-                    <Label text="Profissionais" styleClass="section-title"/>
-                    <Region HBox.hgrow="ALWAYS"/>
-                    <Button fx:id="btnNovo" text="Novo" mnemonicParsing="false"/>
-                    <Button fx:id="btnSalvar" text="Salvar" mnemonicParsing="false" styleClass="btn-primary"/>
-                    <Button fx:id="btnExcluir" text="Excluir" mnemonicParsing="false" styleClass="btn-danger"/>
+                    <Label styleClass="section-title" text="Profissionais" />
+                    <Region HBox.hgrow="ALWAYS" />
                 </HBox>
             </top>
 
@@ -43,63 +45,77 @@
                     <items>
                         <VBox spacing="12.0">
                             <padding>
-                                <Insets top="10" right="12" bottom="12" left="0"/>
+                                <Insets bottom="12" left="0" right="12" top="10" />
                             </padding>
 
-                            <TextField fx:id="txtBusca" promptText="Buscar por nome, especialidade ou registro..." />
+                            <TextField fx:id="txtBusca" promptText="Buscar por ID..." />
 
                             <TableView fx:id="tblProfissionais" VBox.vgrow="ALWAYS">
                                 <columns>
-                                    <TableColumn fx:id="colId" text="ID" prefWidth="110.0"/>
-                                    <TableColumn fx:id="colNome" text="NOME" prefWidth="320.0"/>
-                                    <TableColumn fx:id="colEspecialidade" text="ESPECIALIDADE" prefWidth="260.0"/>
-                                    <TableColumn fx:id="colRegistro" text="REGISTRO" prefWidth="170.0"/>
+                                    <TableColumn fx:id="colId" prefWidth="90.0" text="ID" />
+                                    <TableColumn fx:id="colNome" prefWidth="220.0" text="NOME" />
+                                    <TableColumn fx:id="colEspecialidade" prefWidth="180.0" text="ESPECIALIDADE" />
+                                    <TableColumn fx:id="colRegistro" prefWidth="140.0" text="REGISTRO" />
                                 </columns>
                             </TableView>
                         </VBox>
 
                         <VBox spacing="12.0" styleClass="form">
                             <padding>
-                                <Insets top="14" right="14" bottom="14" left="14"/>
+                                <Insets bottom="14" left="14" right="14" top="14" />
                             </padding>
 
-                            <Label text="Cadastro" styleClass="section-title"/>
+                            <Label styleClass="section-title" text="Cadastro" />
 
                             <GridPane hgap="12.0" vgap="12.0">
                                 <columnConstraints>
-                                    <ColumnConstraints minWidth="110.0" prefWidth="110.0"/>
-                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                    <ColumnConstraints minWidth="110.0" prefWidth="110.0" />
+                                    <ColumnConstraints hgrow="ALWAYS" />
                                 </columnConstraints>
 
-                                <Label text="Clínica" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                                <ComboBox fx:id="cbClinica" promptText="Selecione..." GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                                <Label text="Clínica" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                <ComboBox fx:id="cbClinica" promptText="Selecione..." GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                                <Label text="Nome" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                                <TextField fx:id="txtNome" promptText="Nome completo" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                                <Label text="Nome" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                <TextField fx:id="txtNome" promptText="Nome completo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                                <Label text="Especialidade" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                                <TextField fx:id="txtEspecialidade" promptText="Ex: Cardiologia" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                                <Label text="Especialidade" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                <TextField fx:id="txtEspecialidade" promptText="Ex: Cardiologia" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-                                <Label text="Registro" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-                                <TextField fx:id="txtRegistro" promptText="CRM/Registro" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                                <Label text="Registro" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                                <TextField fx:id="txtRegistro" promptText="CRM/Registro" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <rowConstraints>
+                           <RowConstraints />
+                           <RowConstraints />
+                           <RowConstraints />
+                           <RowConstraints />
+                        </rowConstraints>
                             </GridPane>
 
-                            <Separator/>
+                            <Separator />
 
-                            <Label text="Telefones" styleClass="section-title"/>
+                            <Label styleClass="section-title" text="Telefones" />
 
                             <HBox spacing="10.0">
-                                <TextField fx:id="txtTelefone" promptText="(00) 00000-0000" HBox.hgrow="ALWAYS"/>
-                                <Button fx:id="btnAdicionarTelefone" text="+ Adicionar" mnemonicParsing="false"/>
+                                <TextField fx:id="txtTelefone" promptText="(00) 00000-0000" HBox.hgrow="ALWAYS" />
+                                <Button fx:id="btnAdicionarTelefone" mnemonicParsing="false" text="+ Adicionar" />
                             </HBox>
 
                             <TableView fx:id="tblTelefones" VBox.vgrow="ALWAYS">
                                 <columns>
-                                    <TableColumn fx:id="colNumero" text="Número" prefWidth="320.0"/>
+                                    <TableColumn fx:id="colNumero" prefWidth="320.0" text="Número" />
                                 </columns>
                             </TableView>
-
-                            <Label fx:id="lblDica" text="Dica: selecione um profissional na tabela para editar."/>
+                     <HBox alignment="BASELINE_LEFT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="100.0" prefWidth="200.0">
+                        <children>
+                           <Button fx:id="btnSalvar" mnemonicParsing="false" styleClass="btn-primary" text="Salvar">
+                              <HBox.margin>
+                                 <Insets right="10.0" />
+                              </HBox.margin>
+                           </Button>
+                           <Button fx:id="btnExcluir" mnemonicParsing="false" styleClass="btn-danger" text="Excluir" />
+                        </children>
+                     </HBox>
                         </VBox>
                     </items>
                 </SplitPane>
@@ -108,11 +124,10 @@
             <bottom>
                 <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="bottom-bar">
                     <padding>
-                        <Insets top="10" right="14" bottom="10" left="14"/>
+                        <Insets bottom="10" left="14" right="14" top="10" />
                     </padding>
-                    <Label fx:id="lblDb" text="DB: conectado"/>
-                    <Region HBox.hgrow="ALWAYS"/>
-                    <Label fx:id="lblTela" text="Profissionais"/>
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblTela" text="Profissionais" />
                 </HBox>
             </bottom>
 
